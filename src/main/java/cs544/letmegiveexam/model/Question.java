@@ -26,8 +26,7 @@ public class Question {
     @Column(name = "Sub_ID", nullable = false)
     private List<Subject> subjectLists=new ArrayList();
     @ManyToOne
-    @JoinColumn(name = "questionoption_id")
-    @Column(name="Question_Option_ID",nullable = false)
+    @JoinColumn(name = "questionoption_id",nullable = false)   
     private QuestionOption questionOption;
     @Column(name="Difficulty_Level")
     private int difficultyLevel;
