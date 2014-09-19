@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Sep 19, 2014, 3:58:59 PM
+    Document   : loginfailed
+    Created on : Sep 16, 2014, 2:12:04 PM
     Author     : nirali_bheda
 --%>
 
@@ -12,6 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <p>Please <a href="login">Login</a>
+        <h1>Login Failed</h1>
+        <p>Please <a href="login.jsp">login</a> again. 
     </body>
 </html>

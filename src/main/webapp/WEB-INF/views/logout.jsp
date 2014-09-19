@@ -1,10 +1,11 @@
 <%-- 
-    Document   : index
-    Created on : Sep 19, 2014, 3:58:59 PM
+    Document   : logout
+    Created on : Sep 16, 2014, 2:25:07 PM
     Author     : nirali_bheda
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <p>Please <a href="login">Login</a>
+        <a href="<c:url value="j_spring_security_logout" />" > Logout</a>
     </body>
 </html>

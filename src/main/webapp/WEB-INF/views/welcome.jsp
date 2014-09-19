@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : Sep 19, 2014, 3:58:59 PM
+    Document   : welcome
+    Created on : Sep 19, 2014, 11:03:04 AM
     Author     : nirali_bheda
 --%>
 
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-         <p>Please <a href="login">Login</a>
+        <h1>Hello World!</h1>
     </body>
 </html>
