@@ -3,6 +3,7 @@ package cs544.letmegiveexam.model;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -10,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -34,20 +37,18 @@ public class Subject implements Serializable {
 
     private String description;
 
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    @Column(name="Question_ID",nullable = false)
+    private Question question;
+    
     public Subject() {
     }
 
-    public Subject(String name, String description) {
+    public Subject(String name, String description, Question question) {
         this.name = name;
         this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.question = question;
     }
 
     public String getName() {
@@ -65,6 +66,16 @@ public class Subject implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    
     
     
     
