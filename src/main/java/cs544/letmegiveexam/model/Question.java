@@ -25,12 +25,6 @@ public class Question {
     @OneToMany(mappedBy = "subject_id")
     @Column(name = "Sub_ID", nullable = false)
     private List<Subject> subjectLists=new ArrayList();
-    @OneToMany(mappedBy = "questionset_id")
-    @JoinTable(name="Question_QuestionSet",
-            joinColumns = @JoinColumn(name="question_Id"),
-            inverseJoinColumns = @JoinColumn(name="questionSet_Id")
-            )
-    private List<QuestionSet> questionSetLists=new ArrayList();
     @ManyToOne
     @JoinColumn(name = "questionoption_id")
     @Column(name="Question_Option_ID",nullable = false)
@@ -56,14 +50,6 @@ public class Question {
 
     public void setSubjectLists(List<Subject> subjectLists) {
         this.subjectLists = subjectLists;
-    }
-
-    public List<QuestionSet> getQuestionSetLists() {
-        return questionSetLists;
-    }
-
-    public void setQuestionSetLists(List<QuestionSet> questionSetLists) {
-        this.questionSetLists = questionSetLists;
     }
 
     public QuestionOption getQuestionOption() {
