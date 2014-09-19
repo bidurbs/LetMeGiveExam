@@ -22,7 +22,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="hibernateProperties" ref="hibernateProperties" />
         <!-- OR mapping files. -->
-        <property name="packagesToScan" value="cs544.letmegiveexam.domain"/>
+        <property name="packagesToScan" value="cs544.letmegiveexam.model"/>
             
        
     </bean>
