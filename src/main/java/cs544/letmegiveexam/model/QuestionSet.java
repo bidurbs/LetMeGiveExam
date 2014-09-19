@@ -1,5 +1,6 @@
 package cs544.letmegiveexam.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -15,7 +16,7 @@ import javax.persistence.OneToMany;
  * @author ahmadreza
  */
 @Entity
-public class QuestionSet {
+public class QuestionSet implements Serializable {
     @Id
     @GeneratedValue
     private long id;

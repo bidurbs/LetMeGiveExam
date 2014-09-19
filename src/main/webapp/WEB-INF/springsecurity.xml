@@ -40,20 +40,7 @@
                 and u.username =? "/>   
         </authentication-provider>
     </authentication-manager>
-    <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <beans:property name="location">
-            <beans:value>WEB-INF/jdbc.properties</beans:value>
-        </beans:property>
-    </beans:bean>
-    <beans:bean id="dataSource"
-               class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <beans:property name="url" value="jdbc:mysql://54.165.220.203:3306/cs544db" />
-        <beans:property name="username" value="bidur" />
-        <beans:property name="password" value="bidurbk" />
-    </beans:bean>
     
-
 </beans:beans>
 
 
