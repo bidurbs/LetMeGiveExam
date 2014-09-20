@@ -10,9 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
- *
- * @author Guest
- * @author TalakB
+ * 
  * @version 0.0.1
  */
 @Entity
