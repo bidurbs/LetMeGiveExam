@@ -7,13 +7,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Arjun
  */
 @Entity
+@Table(name = "UserExam")
+@NamedQueries({
+    @NamedQuery(name = "UserExam.findAll", query = "SELECT ue FROM UserExam ue"),
+    @NamedQuery(name="UserExam.findById", query = "SELECT ue FROM UserExam ue WHERE ue.id= :id"),
+    @NamedQuery(name="UserExam.findByStartTime", query = "SELECT ue FROM UserExam ue WHERE ue.startTime= :startTime"),
+    @NamedQuery(name="UserExam.findByDurateion", query = "SELECT ue FROM UserExam ue WHERE ue.durateion= :durateion"),
+    @NamedQuery(name="UserExam.findByScore", query = "SELECT ue FROM UserExam ue WHERE ue.score= :score"),
+    @NamedQuery(name="UserExam.findByUser", query = "SELECT ue FROM UserExam ue WHERE ue.user= :user")
+    })
 public class UserExam implements Serializable {
     @Id
     @GeneratedValue
