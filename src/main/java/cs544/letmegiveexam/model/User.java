@@ -7,6 +7,7 @@ package cs544.letmegiveexam.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,6 +16,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -34,12 +36,77 @@ public class User implements Serializable {
     private String firstName;
     @Column(nullable = false, name = "LastName")
     private String lastName;
+    private String username;
+    private String password;
+    private int lockCount;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date lockTime;
+    private boolean enabled;
+    
     @ManyToOne
     private Role userRole;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserExam> userExamList = new ArrayList<UserExam>();
 
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getLockCount() {
+        return lockCount;
+    }
+
+    public void setLockCount(int lockCount) {
+        this.lockCount = lockCount;
+    }
+
+    public Date getLockTime() {
+        return lockTime;
+    }
+
+    public void setLockTime(Date lockTime) {
+        this.lockTime = lockTime;
+    }
+
+    public Role getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(Role userRole) {
+        this.userRole = userRole;
+    }
+
+    public List<UserExam> getUserExamList() {
+        return userExamList;
+    }
+
+    public void setUserExamList(List<UserExam> userExamList) {
+        this.userExamList = userExamList;
+    }
+
+    
     public User(int role_id, String email, String firstName, String lastName, Role userRole) {
         this.role_id = role_id;
         this.email = email;
