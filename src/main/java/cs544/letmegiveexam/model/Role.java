@@ -13,13 +13,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author Arjun
  */
 @Entity
+@Table(name = "Role")
+@NamedQueries({
+    @NamedQuery(name = "Role.findAll", query = "SELECT r FROM Role r"),
+    @NamedQuery(name="Role.findById", query = "SELECT r FROM Role r WHERE r.id= :id"),
+    @NamedQuery(name = "Role.findByRole", query = "SELECT r FROM Role r WHERE r.role= :role"),
+    @NamedQuery(name="Role.findByUserList", query = "SELECT r FROM Role r WHERE r.userList= :userList")
+    })
 public class Role implements Serializable {
 
     @Id

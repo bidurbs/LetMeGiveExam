@@ -9,13 +9,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 /**
  *
  * @author ahmadreza
  */
 @Entity
+@Table(name = "QuestionSet")
+@NamedQueries({
+    @NamedQuery(name = "QuestionSet.findAll", query = "SELECT qs FROM QuestionSet qs"),
+    @NamedQuery(name="QuestionSet.findById", query = "SELECT qs FROM QuestionSet qs WHERE qs.id= :id"),
+    @NamedQuery(name = "QuestionSet.findByQuestionslist", query = "SELECT qs FROM QuestionSet qs WHERE Qs.questionslist= :questionslist"),
+    })
 public class QuestionSet implements Serializable {
     @Id
     @GeneratedValue

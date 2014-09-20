@@ -15,38 +15,67 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  *
  * @author Arjun
  */
 @Entity
+        @Table(name = "User")
+        @NamedQueries({
+        @NamedQuery(name = "User.findAll", query = "SELECT u FROM User u"),
+        @NamedQuery(name = "User.findById", query = "SELECT u FROM User u WHERE u.id= :id"),
+        @NamedQuery(name = "User.findByRole_id", query = "SELECT u FROM User u WHERE u.role_id= :role_id"),
+        @NamedQuery(name="User.findByEmail", query = "SELECT u FROM User u WHERE u.email= :email"),
+        @NamedQuery(name="User.findByFirstName", query = "SELECT u FROM User u WHERE u.firstName= :firstName"),
+        @NamedQuery(name="User.findByLastName", query = "SELECT u FROM User u WHERE u.lastName= :lastName"),
+        @NamedQuery(name="User.findByUsername", query = "SELECT u FROM User u WHERE u.username= :username"),
+        @NamedQuery(name="User.findByPassword", query = "SELECT u FROM User u WHERE u.password= :assword"),
+        @NamedQuery(name="User.findByLockCount", query = "SELECT u FROM User u WHERE u.lockCount= :lockCount"),
+        @NamedQuery(name="User.findByLockTime", query = "SELECT u FROM User u WHERE u.lockTime= :ockTime"),
+        @NamedQuery(name="User.findByEnabled", query = "SELECT u FROM User u WHERE u.enabled= :enabled"),
+        @NamedQuery(name="User.findByUserRole", query = "SELECT u FROM User u WHERE u.userRole= :userRole"),
+        @NamedQuery(name="User.findByUserExamList", query = "SELECT u FROM User u WHERE u.userExamList= :userExamList")
+    })
 public class User implements Serializable {
 
     @Id
     @GeneratedValue
     private int id;
+
     @Column(nullable = false)
     private int role_id;
+
     @Column(nullable = false, name = "Email")
+    @NotBlank
     private String email;
+
     @Column(nullable = false, name = "FirstName")
     private String firstName;
+
     @Column(nullable = false, name = "LastName")
     private String lastName;
-    
+
     private String username;
+
     private String password;
+
     private int lockCount;
+
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date lockTime;
+
     private boolean enabled;
-    
+
     @ManyToOne
     private Role userRole;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserExam> userExamList = new ArrayList<UserExam>();
 
@@ -58,7 +87,6 @@ public class User implements Serializable {
         this.enabled = enabled;
     }
 
-    
     public String getUsername() {
         return username;
     }
@@ -107,7 +135,6 @@ public class User implements Serializable {
         this.userExamList = userExamList;
     }
 
-    
     public User(int role_id, String email, String firstName, String lastName, Role userRole) {
         this.role_id = role_id;
         this.email = email;
@@ -122,7 +149,6 @@ public class User implements Serializable {
     public int getId() {
         return id;
     }
-
 
     public int getRole_id() {
         return role_id;
