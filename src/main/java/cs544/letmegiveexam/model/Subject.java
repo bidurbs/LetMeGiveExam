@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -14,6 +16,10 @@ import javax.persistence.Table;
  * @version 0.0.1
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Subject.getAll", query = "FROM Subject s")
+
+})
 @Table(name = "Subject")
 public class Subject implements Serializable {
 
