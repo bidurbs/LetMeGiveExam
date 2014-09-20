@@ -8,17 +8,18 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-
 /**
- * 
- * @version 0.0.1
+ *
+ * @author ahmadreza
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Subject.getAll", query = "FROM Subject s")
-
-})
 @Table(name = "Subject")
+@NamedQueries({
+    @NamedQuery(name = "Subject.findAll", query = "SELECT s FROM Subject s"),
+    @NamedQuery(name="Subject.findById", query = "SELECT s FROM Subject s WHERE s.id= :id"),
+    @NamedQuery(name = "Subject.findByName", query = "SELECT s FROM Subject s WHERE s.name= :name"),
+    @NamedQuery(name="Subject.findByDescription", query = "SELECT s FROM Subject s WHERE s.description= :description")
+    })
 public class Subject implements Serializable {
 
     @Id
