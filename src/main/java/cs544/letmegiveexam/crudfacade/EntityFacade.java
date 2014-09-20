@@ -12,7 +12,7 @@ import javax.persistence.TransactionRequiredException;
  * @author bidur
  * @version 0.0.1
  */
-public interface PoweryogaEntityFacade<T> {
+public interface EntityFacade<T> {
 
     public T create(T entity) throws EntityExistsException, IllegalStateException,
             IllegalArgumentException, TransactionRequiredException;
@@ -46,5 +46,4 @@ public interface PoweryogaEntityFacade<T> {
     
     public List findWithNamedQuery(String namedQueryName, Map<String, String> parameters,Map<String, Long> parameters2);
     
-    public List findWithNamedQuery2(String namedQueryName,Map<String, Long> parameters);
 }

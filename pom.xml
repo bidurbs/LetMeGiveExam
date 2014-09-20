@@ -17,6 +17,12 @@
     <dependencies>
         <!-- Basic Web dependencies -->
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring</artifactId>
+            <version>2.5.6</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
             <version>6.0</version>
@@ -81,6 +87,20 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>3.2.3.RELEASE</version>
         </dependency>
+        
+        <!-- mail dependencies-->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        
     </dependencies>
 
     <!-- To get Spring Security to play nice with Spring 4.0.2 -->

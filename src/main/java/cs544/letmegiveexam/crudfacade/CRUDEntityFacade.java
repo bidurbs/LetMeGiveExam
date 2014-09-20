@@ -16,7 +16,7 @@ import org.hibernate.SessionFactory;
  */
 
 
-public abstract class CRUDEntityFacade<T> implements PoweryogaEntityFacade<T> {
+public class CRUDEntityFacade<T> implements EntityFacade<T> {
 
     public Class entityClass;
 
@@ -157,5 +157,25 @@ public abstract class CRUDEntityFacade<T> implements PoweryogaEntityFacade<T> {
         }
 
         return query.list().subList(0, resultLimit - 1);
+    }
+
+    @Override
+    public T save(T entity) throws EntityExistsException, IllegalStateException, IllegalArgumentException, TransactionRequiredException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public T merge(T entity) throws IllegalStateException, IllegalArgumentException, TransactionRequiredException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object findWithNativeQuery(String queryName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List findWithNamedQuery(String namedQueryName, Map<String, String> parameters, Map<String, Long> parameters2) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
