@@ -36,6 +36,7 @@ public class User implements Serializable {
     private String firstName;
     @Column(nullable = false, name = "LastName")
     private String lastName;
+    
     private String username;
     private String password;
     private int lockCount;

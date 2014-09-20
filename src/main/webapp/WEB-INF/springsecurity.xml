@@ -19,7 +19,7 @@
     <http>
         <intercept-url pattern="/login" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
-        <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN" />
+        <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN, ROLE_USER" />
        
         <intercept-url pattern="/**" access="ROLE_ADMIN" method="GET" />
         <intercept-url pattern="/**" access="ROLE_USER" method="GET" />
@@ -33,10 +33,10 @@
         <authentication-provider>            
             <jdbc-user-service data-source-ref="dataSource" 
                                users-by-username-query="
-                select username, password, enabled from user where username=?"
+                select username, password, enabled from User where username=?"
                                authorities-by-username-query="
-                select u.username, ur.authority from user u,
-                userRole ur where u.username = ur.username 
+                select u.username, ur.authority from User u,
+                authority ur where u.id = ur.user_id 
                 and u.username =? "/>   
         </authentication-provider>
     </authentication-manager>
