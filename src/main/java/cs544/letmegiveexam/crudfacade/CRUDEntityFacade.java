@@ -16,7 +16,7 @@ import org.hibernate.SessionFactory;
  */
 
 
-public abstract class CRUDEntityFacade<T> implements PoweryogaEntityFacade<T> {
+public abstract class CRUDEntityFacade<T> implements EntityFacade<T> {
 
     public Class entityClass;
 
