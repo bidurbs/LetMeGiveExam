@@ -22,6 +22,7 @@
             <input type="submit" value="Submit" /><br/>
             <b>Forgot Username or Password - Contact Administrator</b>
         </form>
+            <a href="register" >Register</a>
             
         <h1>Spring MVC internationalization example</h1>
 
