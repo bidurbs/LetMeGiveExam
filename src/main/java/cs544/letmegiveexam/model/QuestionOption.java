@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "QuestionOption.findAll", query = "SELECT qo FROM QuestionOption qo"),
     @NamedQuery(name="QuestionOption.findById", query = "SELECT qo FROM QuestionOption qo WHERE qo.id= :id"),
-    @NamedQuery(name = "QuestionOption.findByOption", query = "SELECT qo FROM QuestionOption qo WHERE Qo.option= :option"),
+    @NamedQuery(name = "QuestionOption.findByOption", query = "SELECT qo FROM QuestionOption qo WHERE qo.option= :option"),
     })
 public class QuestionOption {
     @Id
