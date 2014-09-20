@@ -1,5 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 
 <html>
@@ -20,5 +22,17 @@
             <input type="submit" value="Submit" /><br/>
             <b>Forgot Username or Password - Contact Administrator</b>
         </form>
+            
+        <h1>Spring MVC internationalization example</h1>
+
+    Language : <a href="?language=en">English</a>|
+        <a href="?language=zh_CN">Chinese</a>
+
+    <h3>
+            welcome.springmvc : <spring:message code="welcome.springmvc" text="default text" />
+    </h3>
+
+
+Current Locale : ${pageContext.response.locale}    
     </body>
 </html>

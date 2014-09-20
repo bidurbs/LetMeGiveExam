@@ -20,13 +20,28 @@
 
     <!-- find controller and repository beans -->
     <mvc:annotation-driven />
+   
     <context:component-scan base-package="cs544" />
     
     <!-- enable custom validation messages -->
-    <bean id="messageSource1" 
-          class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="messages" />        
-    </bean>
+
+    <bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+
+	
+
+        <mvc:interceptors>
+            <bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="language" />
+            </bean>
+        </mvc:interceptors>
+        <bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="welcome" />
+	</bean>
 
     <!-- Resolves views selected for rendering by @Controllers to .jsp resources 
     in the /WEB-INF/views directory -->
