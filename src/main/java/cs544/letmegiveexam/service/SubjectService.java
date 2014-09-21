@@ -7,6 +7,7 @@
 package cs544.letmegiveexam.service;
 
 import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
+import cs544.letmegiveexam.crudfacade.EntityFacade;
 import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class SubjectService {
     @Autowired
-    private CRUDEntityFacade cRUDEntityFacade;
-    
+    private EntityFacade cRUDEntityFacade;
     public void updateSubject(Subject subject) {
         cRUDEntityFacade.update(subject);
     }
