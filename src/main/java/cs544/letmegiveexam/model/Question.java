@@ -23,9 +23,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Question")
 @NamedQueries({
-    @NamedQuery(name = "Question.findAll", query = "SELECT q FROM Question q"),
+    @NamedQuery(name="Question.findAll", query = "SELECT q FROM Question q"),
     @NamedQuery(name="Question.findById", query = "SELECT q FROM Question q WHERE q.id= :id"),
-    @NamedQuery(name = "Question.findBySubject", query = "SELECT q FROM Question q WHERE Q.question= :subject"),
+    @NamedQuery(name="Question.findBySubject", query = "SELECT q FROM Question q WHERE q.question= :question"),
     @NamedQuery(name="Question.findByQuestionOption", query = "SELECT q FROM Question q WHERE q.questionOption= :questionOption"),
     @NamedQuery(name="Question.findByDifficultyLevel", query = "SELECT q FROM Question q WHERE q.difficultyLevel= :difficultyLevel"),
     @NamedQuery(name="Question.findByQuestion", query = "SELECT q FROM Question q WHERE q.question= :question"),

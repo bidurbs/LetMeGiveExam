@@ -23,7 +23,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(name = "QuestionSet.findAll", query = "SELECT qs FROM QuestionSet qs"),
     @NamedQuery(name="QuestionSet.findById", query = "SELECT qs FROM QuestionSet qs WHERE qs.id= :id"),
-    @NamedQuery(name = "QuestionSet.findByQuestionslist", query = "SELECT qs FROM QuestionSet qs WHERE Qs.questionslist= :questionslist"),
+    @NamedQuery(name = "QuestionSet.findByQuestionslist", query = "SELECT qs FROM QuestionSet qs WHERE qs.questionslist= :questionslist"),
     })
 public class QuestionSet implements Serializable {
     @Id
