@@ -32,7 +32,7 @@ public class ImportData {
             ImportData fn = new ImportData();
             
             InputStream is = fn.readFile("/file.xls");
-            //System.out.println(is);
+            System.out.println(is);
             
             POIFSFileSystem fs = new POIFSFileSystem( is);
             HSSFWorkbook wb = new HSSFWorkbook(fs);
