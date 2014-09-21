@@ -6,7 +6,7 @@
 
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
+import cs544.letmegiveexam.crudfacade.EntityFacade;
 import cs544.letmegiveexam.model.Subject;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class TestService {
     @Autowired
-    private CRUDEntityFacade crudfacade;
+    private EntityFacade crudfacade;
     
     public List<Subject> getSubjects() {
 
