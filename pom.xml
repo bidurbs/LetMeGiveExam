@@ -94,6 +94,14 @@
             <version>1.4.7</version>
         </dependency>
         
+        <!-- Excel Import Export -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.8</version>
+            <type>jar</type>
+        </dependency>
+
     </dependencies>
 
     <!-- To get Spring Security to play nice with Spring 4.0.2 -->
