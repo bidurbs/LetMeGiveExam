@@ -15,6 +15,8 @@
     <body>
         <h1>Hello World!</h1>
         
+       <a href="${pageContext.request.contextPath}/questionSet/1"> Start Exam</a>
+        
        <!-- <fieldset style="width: 40%; position: absolute;"><legend><h3>Login Page!</h3></legend>    
              <%--<%@include file="login.jsp" %>--%>
             </fieldset> -->

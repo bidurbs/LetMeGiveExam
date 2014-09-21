@@ -37,6 +37,9 @@ public class ImportData {
             POIFSFileSystem fs = new POIFSFileSystem( is);
             HSSFWorkbook wb = new HSSFWorkbook(fs);
             HSSFSheet sheet = wb.getSheetAt(0);
+            
+            String subjectName = sheet.getSheetName();
+            
             Row row;
             for(int i=1; i<=sheet.getLastRowNum(); i++){
                 row = sheet.getRow(i);

@@ -40,6 +40,11 @@ public class QuestionSet implements Serializable {
     public QuestionSet() {
     }
     
+    public QuestionSet( List<Question> questionslist) {
+        this.questionslist = questionslist;
+    }
+    
+    
     public long getId() {
         return id;
     }

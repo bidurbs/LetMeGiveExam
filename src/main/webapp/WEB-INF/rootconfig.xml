@@ -61,13 +61,15 @@
     <tx:annotation-driven transaction-manager="txManager" />
     
     <!-- manually create the appService bean here -->
+    <bean id="questionService" class="cs544.letmegiveexam.service.QuestionService" />
+    <bean id="questionSetService" class="cs544.letmegiveexam.service.QuestionSetService" />
    
    <!-- Mail sender configuration -->
    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com"/>
         <property name="port" value="587"/>
         <property name="username" value="cs544.letmegiveexam"/>
-        <property name="password" value="Letmegice@exam"/>
+        <property name="password" value="Letmegive@exam"/>
         <property name="javaMailProperties">
             <props>
                 <!-- Use SMTP transport protocol -->
