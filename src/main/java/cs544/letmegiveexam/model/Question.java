@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 /**
@@ -22,6 +23,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Question")
+@SecondaryTable(name="Answers")
 @NamedQueries({
     @NamedQuery(name="Question.findAll", query = "SELECT q FROM Question q"),
     @NamedQuery(name="Question.findById", query = "SELECT q FROM Question q WHERE q.id= :id"),
@@ -39,10 +41,6 @@ public class Question implements Serializable {
     @JoinColumn(name = "subject_id", nullable = false)
     
     private Subject subject;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="Question_Answer")    
-    
-    private List<QuestionOption> questionOption =new ArrayList<>();
     
     @Column(name="Difficulty_Level")        
     private int difficultyLevel;
@@ -52,8 +50,52 @@ public class Question implements Serializable {
     
     @Column(name="CorrectAnswer")    
     private String correctAnswer;
+    
+    @Column(table = "Answers")
+    private String option1;
+    
+    @Column(table = "Answers")
+    private String option2;
+    
+    @Column(table = "Answers")
+    private String option3;
+    
+    @Column(table = "Answers")
+    private String option4;
 
     public Question() {        
+    }
+
+    public String getOption1() {
+        return option1;
+    }
+
+    public void setOption1(String option1) {
+        this.option1 = option1;
+    }
+
+    public String getOption2() {
+        return option2;
+    }
+
+    public void setOption2(String option2) {
+        this.option2 = option2;
+    }
+
+    public String getOption3() {
+        return option3;
+    }
+
+    public void setOption3(String option3) {
+        this.option3 = option3;
+    }
+
+    public String getOption4() {
+        return option4;
+    }
+
+    public void setOption4(String option4) {
+        this.option4 = option4;
     }
 
     public Question(Subject subject, int difficultyLevel, String question, String correctAnswer) {
@@ -73,14 +115,6 @@ public class Question implements Serializable {
 
     public void setSubject(Subject subject) {
         this.subject = subject;
-    }
-
-    public List<QuestionOption> getQuestionOption() {
-        return questionOption;
-    }
-
-    public void setQuestionOption(List<QuestionOption> questionOption) {
-        this.questionOption = questionOption;
     }
 
     public int getDifficultyLevel() {

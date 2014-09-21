@@ -15,7 +15,9 @@
     
     <!-- needed for security tag lib expression support -->
     <bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
-
+    <bean id="entityFacade" class="cs544.letmegiveexam.crudfacade.CRUDEntityFacade">
+            <property name="sessionFactory" ref="sessionFactory" />
+            </bean>
         
     <!-- Hibernate SessionFactory -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">

@@ -22,9 +22,12 @@
     <mvc:annotation-driven />
    
     <context:component-scan base-package="cs544" />
+    <bean id="userController" class="cs544.letmegiveexam.controller.UserController" > 
+        <property name="userServices" ref="userServices" />
+    </bean>
+    <bean id="userServices" class="cs544.letmegiveexam.service.UserServices"/>
     
     <!-- enable custom validation messages -->
-
     <bean id="localeResolver"
 		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
 		<property name="defaultLocale" value="en" />
