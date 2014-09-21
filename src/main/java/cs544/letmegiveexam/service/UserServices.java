@@ -6,9 +6,7 @@
 
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
 import cs544.letmegiveexam.crudfacade.EntityFacade;
-import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,27 +16,27 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UserServices {
     @Autowired
-    private EntityFacade cRUDEntityFacade;
+    private EntityFacade crudfasade;
     
     public void updateUser(User user) {
-        cRUDEntityFacade.update(user);
+        crudfasade.update(user);
     }
  
     public User getUserById(Long Id) {
-        return (User) cRUDEntityFacade.read(Id, User.class);
+        return (User) crudfasade.read(Id, User.class);
     }
 
     public void deleteUser(User user) {
-        cRUDEntityFacade.delete(user);        
+        crudfasade.delete(user);        
     }
 
 	public void saveQuestion(User user) {
-        cRUDEntityFacade.save(user);
+        crudfasade.save(user);
     }
         public void createUser(User user){
-           User u= (User) cRUDEntityFacade.create(user);
+           User u= (User) crudfasade.create(user);
             System.out.println("generated user Id " + u.getId());
-           cRUDEntityFacade.createAuthority(u);
+           crudfasade.createAuthority(u);
                      
             System.out.println(u.getUsername());
         }

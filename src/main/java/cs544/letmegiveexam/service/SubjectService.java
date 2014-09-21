@@ -16,22 +16,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class SubjectService {
 
     @Autowired
-    private EntityFacade cRUDEntityFacade;
+    private EntityFacade crudfasade;
 
     public void updateSubject(Subject subject) {
-        cRUDEntityFacade.update(subject);
+        crudfasade.update(subject);
     }
 
     public Subject getSubjectById(Long Id) {
-        return (Subject) cRUDEntityFacade.read(Id, Subject.class);
+        return (Subject) crudfasade.read(Id, Subject.class);
     }
 
     public void deleteSubject(Subject subject) {
-        cRUDEntityFacade.delete(subject);
+        crudfasade.delete(subject);
     }
 
     public void saveSubject(Subject subject) {
-        cRUDEntityFacade.save(subject);
+        crudfasade.save(subject);
     }
     
     

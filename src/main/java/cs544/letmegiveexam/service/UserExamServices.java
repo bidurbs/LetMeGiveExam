@@ -6,9 +6,7 @@
 
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
 import cs544.letmegiveexam.crudfacade.EntityFacade;
-import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.UserExam;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,21 +16,21 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class UserExamServices {
     @Autowired
-    private EntityFacade cRUDEntityFacade;
+    private EntityFacade crudfasade;
     
     public void updateUserExam(UserExam userExam) {
-        cRUDEntityFacade.update(userExam);
+        crudfasade.update(userExam);
     }
  
     public UserExam getUserExamById(Long Id) {
-        return (UserExam) cRUDEntityFacade.read(Id, UserExam.class);
+        return (UserExam) crudfasade.read(Id, UserExam.class);
     }
 
     public void deleteUserExam(UserExam userExam) {
-        cRUDEntityFacade.delete(userExam);        
+        crudfasade.delete(userExam);        
     }
 
 	public void saveUserExam(UserExam userExam) {
-        cRUDEntityFacade.save(userExam);
+        crudfasade.save(userExam);
     }
 }

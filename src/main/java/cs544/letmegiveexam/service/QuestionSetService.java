@@ -19,22 +19,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class QuestionSetService {
 
     @Autowired
-    private EntityFacade cRUDEntityFacade;
+    private EntityFacade crudfasade;
 
     public void updateQuestionSet(QuestionSet questionSet) {
-        cRUDEntityFacade.update(questionSet);
+        crudfasade.update(questionSet);
     }
 
     public QuestionSet getQuestionSetById(Long Id) {
-        return (QuestionSet) cRUDEntityFacade.read(Id, QuestionSet.class);
+        return (QuestionSet) crudfasade.read(Id, QuestionSet.class);
     }
 
     public void deleteQuestionSet(QuestionSet questionSet) {
-        cRUDEntityFacade.delete(questionSet);
+        crudfasade.delete(questionSet);
     }
 
     public QuestionSet saveQuestionSet(QuestionSet questionSet) {
-       return (QuestionSet) cRUDEntityFacade.create(questionSet);
+       return (QuestionSet) crudfasade.create(questionSet);
     }
 
     public void createQuestionSet(List<Question> questionSet) {

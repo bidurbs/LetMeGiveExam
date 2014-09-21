@@ -19,29 +19,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class QuestionService {
 
     @Autowired
-    private EntityFacade cRUDEntityFacade;
+    private EntityFacade crudfasade;
 
     public void updateQuestion(Question question) {
-        cRUDEntityFacade.update(question);
+        crudfasade.update(question);
     }
 
     public Question getQuestionById(Long Id) {
-        return (Question) cRUDEntityFacade.read(Id, Question.class);
+        return (Question) crudfasade.read(Id, Question.class);
     }
 
     public void deleteQuestion(Question question) {
-        cRUDEntityFacade.delete(question);
+        crudfasade.delete(question);
     }
 
     public void saveQuestion(Question question) {
-        cRUDEntityFacade.save(question);
+        crudfasade.save(question);
     }
 
     public List<Question> getQuestionsBySubjectId(long Id) {
         try{
         Map<String, Long> paramaters = new HashMap<>(1);
         //paramaters.put("subjectId", Id);
-        return cRUDEntityFacade.findWithNamedQuery("Question.findAll");
+        return crudfasade.findWithNamedQuery("Question.findAll");
         }catch(Exception ex){
             System.out.println(ex.getMessage());
             return null;
