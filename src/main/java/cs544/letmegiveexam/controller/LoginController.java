@@ -21,6 +21,12 @@ public class LoginController {
         public String welcome(){
             return "welcome";
         }
+        
+//        @RequestMapping(value="/", method=RequestMethod.GET)
+//        public String home(){
+//            return "welcome";
+//        }
+        
 //        @ExceptionHandler(value=NoSuchResourceException.class)
 //	public ModelAndView handle(Exception e) {
 //		ModelAndView mv = new ModelAndView();
