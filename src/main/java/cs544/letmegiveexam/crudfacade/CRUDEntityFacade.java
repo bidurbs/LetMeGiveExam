@@ -1,5 +1,6 @@
 package cs544.letmegiveexam.crudfacade;
 
+import cs544.letmegiveexam.model.User;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -7,7 +8,9 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.PersistenceException;
 import javax.persistence.TransactionRequiredException;
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -20,10 +23,22 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
 
     public Class entityClass;
 
-   // @Autowired
+    //@Autowired
     private SessionFactory sessionFactory;
 
     private boolean operationSuccessful;
+
+    public void setEntityClass(Class entityClass) {
+        this.entityClass = entityClass;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public void setOperationSuccessful(boolean operationSuccessful) {
+        this.operationSuccessful = operationSuccessful;
+    }
 
       
     /**
@@ -39,9 +54,24 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
     public T create(T entity) throws EntityExistsException,
             IllegalStateException, IllegalArgumentException,
             TransactionRequiredException {
-        sessionFactory.getCurrentSession().persist(entity);
-        // manager.flush();
+        sessionFactory.getCurrentSession().save(entity);
+        
+        System.out.println("Saved.. ");
         return entity;
+    }
+    @Override
+    public T createAuthority(T entity){
+        User user=(User) entity;
+        System.out.println(user.getId());
+        String sql="insert into authority(user_id,username,authority) values(?,?,?)";
+        SQLQuery createSQLQuery = sessionFactory.getCurrentSession().createSQLQuery(sql);
+        createSQLQuery.setParameter(0, user.getId());
+        createSQLQuery.setParameter(1, user.getUsername());
+        createSQLQuery.setParameter(2, "ROLE_USER");
+         createSQLQuery.executeUpdate();
+         
+        return entity;
+        
     }
 
     /**

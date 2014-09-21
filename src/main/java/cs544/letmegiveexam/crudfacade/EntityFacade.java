@@ -33,7 +33,8 @@ public interface EntityFacade<T> {
     public boolean delete(T entity) throws IllegalStateException,
             IllegalArgumentException, TransactionRequiredException,
             PersistenceException;
-
+    public T  createAuthority (T entity) throws EntityExistsException, IllegalStateException,
+            IllegalArgumentException, TransactionRequiredException;
     public List findWithNamedQuery(String queryName);
 
     public List findWithNamedQuery(String queryName, int resultLimit);
