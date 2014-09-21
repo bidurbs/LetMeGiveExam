@@ -1,7 +1,5 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 
 <html>
@@ -10,6 +8,7 @@
         <title>Login Page</title>
     </head>
     <body>
+         <!--<fieldset style="width: 40%; position: absolute;"><legend><h3>Login Page!</h3></legend>-->  
         <h3>
         <table border="0">
             <tr>
@@ -34,5 +33,6 @@
             </h3>
 
             </table>
+            <!--</fieldset>-->
     </body>
 </html>
