@@ -69,7 +69,7 @@
         <property name="host" value="smtp.gmail.com"/>
         <property name="port" value="587"/>
         <property name="username" value="cs544.letmegiveexam"/>
-        <property name="password" value="Letmegice@exam"/>
+        <property name="password" value="Letmegive@exam"/>
         <property name="javaMailProperties">
             <props>
                 <!-- Use SMTP transport protocol -->
