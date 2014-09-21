@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 public class EmailManager {
 
     /**
-     * This method will send email 
+     * This method will send email to customer/faculty/admin etc
      *
      * @param mailSender Java email sender
      * @param subject Email subject
