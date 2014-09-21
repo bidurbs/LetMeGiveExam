@@ -35,4 +35,11 @@ public class UserServices {
 	public void saveQuestion(User user) {
         cRUDEntityFacade.save(user);
     }
+        public void createUser(User user){
+           User u= (User) cRUDEntityFacade.create(user);
+            System.out.println("generated user Id " + u.getId());
+           cRUDEntityFacade.createAuthority(u);
+                     
+            System.out.println(u.getUsername());
+        }
 }
