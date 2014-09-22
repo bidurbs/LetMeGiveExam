@@ -32,7 +32,8 @@ public class LoginController {
 
 
          @Autowired
-            private SubjectService subjectService;
+         SubjectService subjectService;
+         
          private UserServices userServices;
         
          
