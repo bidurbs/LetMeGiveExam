@@ -11,6 +11,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
@@ -36,6 +37,9 @@ public class Question implements Serializable {
     @JoinColumn(name = "subject_id", nullable = false)
 
     private Subject subject;
+    
+    @Transient
+    private String userAnswer;    
 
     @Column(name = "Difficulty_Level")
     private String difficultyLevel;
@@ -134,6 +138,14 @@ public class Question implements Serializable {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+    
+    public String getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
     }
 
 }
