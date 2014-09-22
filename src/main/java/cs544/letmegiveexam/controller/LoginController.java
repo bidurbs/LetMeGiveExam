@@ -24,12 +24,12 @@ public class LoginController {
 
     @Autowired
     private SubjectService subjectService;
-
+    
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome(Model model) {
         System.out.println("Subject List");
         //ModelAndView model = new ModelAndView();
-        List<Subject> subjects = subjectService.getAll();
+        List<Subject> subjects = subjectService.getAllSubjects();
         System.out.println("Subject List:" + subjects.size());
         for (Subject sub : subjects) {
             System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
@@ -42,7 +42,7 @@ public class LoginController {
     public ModelAndView getSubjects() {
         //return "subjects";
         ModelAndView model = new ModelAndView();
-        List<Subject> subjects = subjectService.getAll();
+        List<Subject> subjects = subjectService.getAllSubjects();
         System.out.println("Subject List:" + subjects.size());
         for (Subject sub : subjects) {
             System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());

@@ -18,11 +18,14 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Arjun
  */
+
+
 @Service
 public class SubjectService {
+
     @Autowired
     SubjectDao subjectDao;
-    
+
     @Autowired
     private EntityFacade crudfasade;
 
@@ -41,9 +44,21 @@ public class SubjectService {
     public void saveSubject(Subject subject) {
         crudfasade.save(subject);
     }
-    @Transactional(propagation=Propagation.REQUIRES_NEW)
-    public List<Subject> getAll(){
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public List<Subject> getAll() {
         return subjectDao.getSubjects();
     }
-    
+
+    public List<Subject> getAllSubjects() {
+        //return crudfasade.getAll(Subject.class);
+        //List<Subject> subjects = crudfasade.getAll(Subject.class);
+        List<Subject> subjects = crudfasade.findWithNamedQuery("Subject.findAll");
+        System.out.println("Subject List:" + subjects.size());
+        for (Subject sub : subjects) {
+            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
+        }
+        return subjects;
+    }
+
 }
