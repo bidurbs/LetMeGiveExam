@@ -1,4 +1,5 @@
 
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +10,6 @@ package cs544.letmegiveexam.controller;
 
 import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.service.UserServices;
-import java.util.Date;
 import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -63,6 +63,7 @@ public class UserController {
       
     }
     
+
     
    
    

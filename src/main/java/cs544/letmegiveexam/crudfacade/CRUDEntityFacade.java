@@ -1,3 +1,4 @@
+
 package cs544.letmegiveexam.crudfacade;
 
 import cs544.letmegiveexam.model.User;
@@ -10,7 +11,6 @@ import javax.persistence.TransactionRequiredException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -205,6 +205,11 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
     @Override
     public List findWithNamedQuery(String namedQueryName, Map<String, String> parameters, Map<String, Long> parameters2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public List getAll(T entity) {
+        return sessionFactory.getCurrentSession().createCriteria(entity.getClass()).list();
     }
     
     public void setEntityClass(Class entityClass) {
