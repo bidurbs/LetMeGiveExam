@@ -41,9 +41,9 @@ public class SubjectService {
     public void deleteSubject(Subject subject) {
         crudfasade.delete(subject);
     }
-
-    public void saveSubject(Subject subject) {
-        crudfasade.save(subject);
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void addSubject(Subject subject) {
+        subjectDao.addSubject(subject);
     }
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
