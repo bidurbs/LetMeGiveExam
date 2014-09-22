@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs544.letmegiveexam.model;
 
 import java.io.Serializable;
@@ -20,6 +15,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -54,16 +50,19 @@ public class User implements Serializable {
 
     @Column(nullable = false, name = "Email")
     @NotBlank
+    @Email
     private String email;
 
     @Column(nullable = false, name = "FirstName")
+    @NotBlank
     private String firstName;
 
     @Column(nullable = false, name = "LastName")
+    @NotBlank
     private String lastName;
-
+    @NotBlank
     private String username;
-
+    @NotBlank
     private String password;
 
     private int lockCount;
