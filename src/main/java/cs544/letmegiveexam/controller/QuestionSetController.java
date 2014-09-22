@@ -7,8 +7,10 @@ package cs544.letmegiveexam.controller;
 
 import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.QuestionSet;
+import cs544.letmegiveexam.model.UserExam;
 import cs544.letmegiveexam.service.QuestionService;
 import cs544.letmegiveexam.service.QuestionSetService;
+import cs544.letmegiveexam.service.UserExamService;
 import java.io.Serializable;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +34,9 @@ public class QuestionSetController implements Serializable{
     
     @Autowired
     QuestionSetService questionSetService;
+    
+    @Autowired
+    UserExamService userExamService;
 
 
     
@@ -51,11 +56,17 @@ public class QuestionSetController implements Serializable{
     @RequestMapping(value = "/questionSet/{Id}", method = RequestMethod.GET)
     public String startExam(Model model, HttpServletRequest request, @PathVariable long Id) {
         QuestionSet questionSet = questionSetService.get(Id);
+        
+        //save exam for user
+        UserExam userExam = new UserExam(null, null, questionSet); 
+        userExamService.add(userExam);
+        
         //put list of questions in session
         List<Question> questionSetQuestions = questionSet.getQuestionslist();
         model.addAttribute("questionSetQuestions", questionSetQuestions);
         model.addAttribute("questionSet", questionSet);
         model.addAttribute("subject", questionSetQuestions.get(0).getSubject());
+        model.addAttribute("userExam", userExam);
         return "listQuestion";
     }
 
