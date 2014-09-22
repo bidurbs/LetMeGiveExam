@@ -38,7 +38,7 @@ public class Question implements Serializable {
     private Subject subject;
 
     @Column(name = "Difficulty_Level")
-    private int difficultyLevel;
+    private String difficultyLevel;
 
     @Column(name = "Question")
     private String question;
@@ -93,7 +93,7 @@ public class Question implements Serializable {
         this.option4 = option4;
     }
 
-    public Question(Subject subject, int difficultyLevel, String question, String correctAnswer) {
+    public Question(Subject subject, String difficultyLevel, String question, String correctAnswer) {
         this.subject = subject;
         this.difficultyLevel = difficultyLevel;
         this.question = question;
@@ -112,11 +112,11 @@ public class Question implements Serializable {
         this.subject = subject;
     }
 
-    public int getDifficultyLevel() {
+    public String getDifficultyLevel() {
         return difficultyLevel;
     }
 
-    public void setDifficultyLevel(int difficultyLevel) {
+    public void setDifficultyLevel(String difficultyLevel) {
         this.difficultyLevel = difficultyLevel;
     }
 
