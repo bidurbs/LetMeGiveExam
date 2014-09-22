@@ -24,7 +24,6 @@ import javax.persistence.Temporal;
     @NamedQuery(name = "UserExam.findAll", query = "SELECT ue FROM UserExam ue"),
     @NamedQuery(name = "UserExam.findById", query = "SELECT ue FROM UserExam ue WHERE ue.id= :id"),
     @NamedQuery(name = "UserExam.findByStartTime", query = "SELECT ue FROM UserExam ue WHERE ue.startTime= :startTime"),
-    @NamedQuery(name = "UserExam.findByDurateion", query = "SELECT ue FROM UserExam ue WHERE ue.durateion= :durateion"),
     @NamedQuery(name = "UserExam.findByScore", query = "SELECT ue FROM UserExam ue WHERE ue.score= :score"),
     @NamedQuery(name = "UserExam.findByUser", query = "SELECT ue FROM UserExam ue WHERE ue.user= :user")
 })
@@ -38,20 +37,20 @@ public class UserExam implements Serializable {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date startTime;
     
-    @Column(nullable = false)
-    private String durateion;
-    @Column(nullable = false)
+    @Column(nullable = true)
+    private String duration ;
+    @Column(nullable = true)
     private int score;
+    
     @ManyToOne
     private User user;
 
     @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(nullable = false ,name="questionSet_Id")
     private QuestionSet questionSet;
 
-    public UserExam(Date startTime, String durateion, int score, User user) {
+    public UserExam(Date startTime, String duration, int score, User user) {
         this.startTime = startTime;
-        this.durateion = durateion;
+        this.duration = duration;
         this.score = score;
         this.user = user;
     }
@@ -78,12 +77,12 @@ public class UserExam implements Serializable {
         this.startTime = startTime;
     }
 
-    public String getDurateion() {
-        return durateion;
+    public String getDuration() {
+        return duration;
     }
 
-    public void setDurateion(String durateion) {
-        this.durateion = durateion;
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public int getScore() {

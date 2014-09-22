@@ -36,7 +36,7 @@ public class UserExamController {
             List<Question> questionList = userExam.getQuestionSet().getQuestionslist();
             int score = calcualteResult(questionList);
             userExam.setScore(score);
-            userExam.setDurateion("5"); // minutes
+            userExam.setDuration("5"); // minutes
             userExamService.update(userExam);
         }
         return "redirect:/examHistory";

@@ -18,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Arjun
  */
 @Service
-@Transactional
 public class UserExamService {
 
     @Autowired
@@ -38,7 +37,8 @@ public class UserExamService {
     public void update(UserExam userExam) {
         userExamDAO.update(userExam);
     }
-
+    
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public List<UserExam> getUserExam(long userId) {
         return userExamDAO.getUserExam(userId);
     }

@@ -6,7 +6,6 @@
 package cs544.letmegiveexam.dao;
 
 import cs544.letmegiveexam.model.UserExam;
-import java.math.BigInteger;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -20,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author bidur
  */
+
 @Repository
 @Transactional(propagation = Propagation.MANDATORY)
 public class UserExamDAO {
