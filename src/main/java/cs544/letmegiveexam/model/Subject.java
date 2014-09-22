@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import org.hibernate.validator.constraints.NotBlank;
+
 /**
  *
  * @author ahmadreza
@@ -16,18 +18,22 @@ import javax.persistence.Table;
 @Table(name = "Subject")
 @NamedQueries({
     @NamedQuery(name = "Subject.findAll", query = "SELECT s FROM Subject s"),
-    @NamedQuery(name="Subject.findById", query = "SELECT s FROM Subject s WHERE s.id= :id"),
+    @NamedQuery(name = "Subject.findById", query = "SELECT s FROM Subject s WHERE s.id= :id"),
     @NamedQuery(name = "Subject.findByName", query = "SELECT s FROM Subject s WHERE s.name= :name"),
-    @NamedQuery(name="Subject.findByDescription", query = "SELECT s FROM Subject s WHERE s.description= :description")
-    })
+    @NamedQuery(name = "Subject.findByDescription", query = "SELECT s FROM Subject s WHERE s.description= :description")
+})
 public class Subject implements Serializable {
+
+    public long getId() {
+        return id;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @NotBlank
     private String name;
-
+    @NotBlank
     private String description;
 
     public Subject() {

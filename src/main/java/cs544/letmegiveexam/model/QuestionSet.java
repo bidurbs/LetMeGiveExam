@@ -9,9 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -22,24 +22,28 @@ import javax.persistence.Table;
 @Table(name = "QuestionSet")
 @NamedQueries({
     @NamedQuery(name = "QuestionSet.findAll", query = "SELECT qs FROM QuestionSet qs"),
-    @NamedQuery(name="QuestionSet.findById", query = "SELECT qs FROM QuestionSet qs WHERE qs.id= :id"),
-    @NamedQuery(name = "QuestionSet.findByQuestionslist", query = "SELECT qs FROM QuestionSet qs WHERE qs.questionslist= :questionslist"),
-    })
+    @NamedQuery(name = "QuestionSet.findById", query = "SELECT qs FROM QuestionSet qs WHERE qs.id= :id"),
+    @NamedQuery(name = "QuestionSet.findByQuestionslist", query = "SELECT qs FROM QuestionSet qs WHERE qs.questionslist= :questionslist"),})
 public class QuestionSet implements Serializable {
+
     @Id
     @GeneratedValue
     private long id;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "QuestionSet-Question",
-            joinColumns = @JoinColumn(name = "questionSet_Id"),
-            inverseJoinColumns = @JoinColumn(name = "question_Id")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "QuestionSetQuestion",
+            joinColumns = @JoinColumn(name = "questionSet_Id", unique = false),
+            inverseJoinColumns = @JoinColumn(name = "question_Id", unique = false)
     )
-    
+
     private List<Question> questionslist = new ArrayList();
 
     public QuestionSet() {
     }
-    
+
+    public QuestionSet(List<Question> questionslist) {
+        this.questionslist = questionslist;
+    }
+
     public long getId() {
         return id;
     }
@@ -51,5 +55,5 @@ public class QuestionSet implements Serializable {
     public void setQuestionslist(List<Question> questionslist) {
         this.questionslist = questionslist;
     }
-    
+
 }

@@ -3,35 +3,63 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
+import cs544.letmegiveexam.dao.SubjectDao;
 import cs544.letmegiveexam.crudfacade.EntityFacade;
-import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.Subject;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Arjun
  */
+
+
+@Service
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class SubjectService {
+
     @Autowired
-    private EntityFacade cRUDEntityFacade;
+    SubjectDao subjectDao;
+
+    @Autowired
+    private EntityFacade crudfasade;
+
     public void updateSubject(Subject subject) {
-        cRUDEntityFacade.update(subject);
+        crudfasade.update(subject);
     }
- 
+
     public Subject getSubjectById(Long Id) {
-        return (Subject) cRUDEntityFacade.read(Id, Subject.class);
+        return (Subject) crudfasade.read(Id, Subject.class);
     }
 
     public void deleteSubject(Subject subject) {
-        cRUDEntityFacade.delete(subject);        
+        crudfasade.delete(subject);
+    }
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void addSubject(Subject subject) {
+        subjectDao.addSubject(subject);
     }
 
-	public void saveSubject(Subject subject) {
-        cRUDEntityFacade.save(subject);
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public List<Subject> getAll() {
+        return subjectDao.getSubjects();
     }
+
+    public List<Subject> getAllSubjects() {
+        //return crudfasade.getAll(Subject.class);
+        //List<Subject> subjects = crudfasade.getAll(Subject.class);
+        List<Subject> subjects = crudfasade.findWithNamedQuery("Subject.findAll");
+        System.out.println("Subject List:" + subjects.size());
+        for (Subject sub : subjects) {
+            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
+        }
+        return subjects;
+    }
+
 }

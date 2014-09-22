@@ -3,18 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cs544.letmegiveexam.controller;
+
 
 import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.service.UserServices;
 import javax.servlet.http.HttpSession;
-import org.hibernate.SessionFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+
+import cs544.letmegiveexam.model.Subject;
+import cs544.letmegiveexam.service.SubjectService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -25,13 +29,21 @@ import org.springframework.web.servlet.ModelAndView;
  */
 @Controller
 public class LoginController {
-    
+
+         @Autowired
+            private SubjectService subjectService;
          private UserServices userServices;
         
          
-        @RequestMapping(value="/welcome", method=RequestMethod.GET)
-        public String welcome(HttpSession session){
-            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       
+
+
+   
+    
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    public String welcome(Model model, HttpSession session) {
+        System.out.println("Subject List");
+         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             String name = auth.getName();
             System.out.println(name);
            
@@ -40,9 +52,17 @@ public class LoginController {
                User user= userServices.getUserByUsername(name);
                session.setAttribute("user", user);
            }
-            
-            return "welcome";
+        //ModelAndView model = new ModelAndView();
+        List<Subject> subjects = subjectService.getAllSubjects();
+        System.out.println("Subject List:" + subjects.size());
+        for (Subject sub : subjects) {
+            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
+
         }
+         model.addAttribute("subjects", subjects);
+        return "welcome";
+    }
+
         
         @RequestMapping(value="/login", method=RequestMethod.GET)
         public String index(){
@@ -73,4 +93,22 @@ public class LoginController {
 	}
     
         
+
+       
+
+    @RequestMapping(value = "/subjects", method = RequestMethod.GET)
+    public ModelAndView getSubjects() {
+        //return "subjects";
+        ModelAndView model = new ModelAndView();
+        List<Subject> subjects = subjectService.getAllSubjects();
+        System.out.println("Subject List:" + subjects.size());
+        for (Subject sub : subjects) {
+            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
+        }
+        model.addObject(subjects);
+        return model;
+    }
+
+   
+
 }

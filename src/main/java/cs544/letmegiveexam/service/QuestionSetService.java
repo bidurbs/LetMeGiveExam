@@ -3,36 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
-import cs544.letmegiveexam.crudfacade.EntityFacade;
-import cs544.letmegiveexam.model.Question;
+import cs544.letmegiveexam.dao.QuestionSetDAO;
 import cs544.letmegiveexam.model.QuestionSet;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
- * @author Arjun
+ * @author bidur
  */
+@Service
 public class QuestionSetService {
+
     @Autowired
-    private EntityFacade cRUDEntityFacade;
+    QuestionSetDAO questionSetDAO;
     
-    public void updateQuestionSet(QuestionSet questionSet) {
-        cRUDEntityFacade.update(questionSet);
-    }
- 
-    public QuestionSet getQuestionSetById(Long Id) {
-        return (QuestionSet) cRUDEntityFacade.read(Id, QuestionSet.class);
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public List<QuestionSet> getAll() {
+        return questionSetDAO.getAll();
     }
 
-    public void deleteQuestionSet(QuestionSet questionSet) {
-        cRUDEntityFacade.delete(questionSet);        
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public long add(QuestionSet questionSet) {
+        return questionSetDAO.add(questionSet);
+    }
+    
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public QuestionSet get(long Id) {
+        return questionSetDAO.get(Id);
     }
 
-	public void saveQuestionSet(QuestionSet questionSet) {
-        cRUDEntityFacade.save(questionSet);
-    }
 }

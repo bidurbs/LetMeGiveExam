@@ -1,19 +1,15 @@
 package cs544.letmegiveexam.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 /**
@@ -22,41 +18,82 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Question")
+@SecondaryTable(name = "Answers")
 @NamedQueries({
-    @NamedQuery(name="Question.findAll", query = "SELECT q FROM Question q"),
-    @NamedQuery(name="Question.findById", query = "SELECT q FROM Question q WHERE q.id= :id"),
-    @NamedQuery(name="Question.findBySubject", query = "SELECT q FROM Question q WHERE q.question= :question"),
-    @NamedQuery(name="Question.findByQuestionOption", query = "SELECT q FROM Question q WHERE q.questionOption= :questionOption"),
-    @NamedQuery(name="Question.findByDifficultyLevel", query = "SELECT q FROM Question q WHERE q.difficultyLevel= :difficultyLevel"),
-    @NamedQuery(name="Question.findByQuestion", query = "SELECT q FROM Question q WHERE q.question= :question"),
-    @NamedQuery(name="Question.findByCorrectAnswer", query = "SELECT q FROM Question q WHERE q.correctAnswer= :correctAnswer")
+    @NamedQuery(name = "Question.findAll", query = "FROM Question q"),
+    @NamedQuery(name = "Question.findById", query = "SELECT q FROM Question q WHERE q.id= :id"),
+    @NamedQuery(name = "Question.findBySubject", query = "FROM Question q WHERE q.subject.id= :subjectId"),
+    @NamedQuery(name = "Question.findByDifficultyLevel", query = "SELECT q FROM Question q WHERE q.difficultyLevel= :difficultyLevel"),
+    @NamedQuery(name = "Question.findByQuestion", query = "SELECT q FROM Question q WHERE q.question= :question"),
+    @NamedQuery(name = "Question.findByCorrectAnswer", query = "SELECT q FROM Question q WHERE q.correctAnswer= :correctAnswer")
 })
 public class Question implements Serializable {
+
     @Id
     @GeneratedValue
     private long id;
     @ManyToOne
     @JoinColumn(name = "subject_id", nullable = false)
-    
+
     private Subject subject;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name="Question_Answer")    
-    
-    private List<QuestionOption> questionOption =new ArrayList<>();
-    
-    @Column(name="Difficulty_Level")        
-    private int difficultyLevel;
-    
-    @Column(name="Question")    
+
+    @Column(name = "Difficulty_Level")
+    private String difficultyLevel;
+
+    @Column(name = "Question")
     private String question;
-    
-    @Column(name="CorrectAnswer")    
+
+    @Column(name = "CorrectAnswer")
     private String correctAnswer;
 
-    public Question() {        
+    @Column(table = "Answers")
+    private String option1;
+
+    @Column(table = "Answers")
+    private String option2;
+
+    @Column(table = "Answers")
+    private String option3;
+
+    @Column(table = "Answers")
+    private String option4;
+
+    public Question() {
     }
 
-    public Question(Subject subject, int difficultyLevel, String question, String correctAnswer) {
+    public String getOption1() {
+        return option1;
+    }
+
+    public void setOption1(String option1) {
+        this.option1 = option1;
+    }
+
+    public String getOption2() {
+        return option2;
+    }
+
+    public void setOption2(String option2) {
+        this.option2 = option2;
+    }
+
+    public String getOption3() {
+        return option3;
+    }
+
+    public void setOption3(String option3) {
+        this.option3 = option3;
+    }
+
+    public String getOption4() {
+        return option4;
+    }
+
+    public void setOption4(String option4) {
+        this.option4 = option4;
+    }
+
+    public Question(Subject subject, String difficultyLevel, String question, String correctAnswer) {
         this.subject = subject;
         this.difficultyLevel = difficultyLevel;
         this.question = question;
@@ -75,19 +112,11 @@ public class Question implements Serializable {
         this.subject = subject;
     }
 
-    public List<QuestionOption> getQuestionOption() {
-        return questionOption;
-    }
-
-    public void setQuestionOption(List<QuestionOption> questionOption) {
-        this.questionOption = questionOption;
-    }
-
-    public int getDifficultyLevel() {
+    public String getDifficultyLevel() {
         return difficultyLevel;
     }
 
-    public void setDifficultyLevel(int difficultyLevel) {
+    public void setDifficultyLevel(String difficultyLevel) {
         this.difficultyLevel = difficultyLevel;
     }
 
@@ -107,5 +136,4 @@ public class Question implements Serializable {
         this.correctAnswer = correctAnswer;
     }
 
-   
 }

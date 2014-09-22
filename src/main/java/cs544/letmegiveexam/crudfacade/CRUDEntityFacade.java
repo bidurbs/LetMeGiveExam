@@ -133,9 +133,9 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
      * @param queryName
      * @return
      */
-    @Override
+    @Override   
     public List findWithNamedQuery(String queryName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sessionFactory.getCurrentSession().getNamedQuery(queryName).list();
     }
     
     /**
