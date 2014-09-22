@@ -7,6 +7,7 @@ package cs544.letmegiveexam.service;
 
 import cs544.letmegiveexam.crudfacade.EntityFacade;
 import cs544.letmegiveexam.model.Subject;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
@@ -33,6 +34,16 @@ public class SubjectService {
     public void saveSubject(Subject subject) {
         crudfasade.save(subject);
     }
-    
-    
+
+    public List<Subject> getAllSubjects() {
+        //return crudfasade.getAll(Subject.class);
+        //List<Subject> subjects = crudfasade.getAll(Subject.class);
+        List<Subject> subjects =crudfasade.findWithNamedQuery("Subject.findAll");
+        System.out.println("Subject List:" + subjects.size());
+        for (Subject sub : subjects) {
+            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
+        }
+        return subjects;
+    }
+
 }

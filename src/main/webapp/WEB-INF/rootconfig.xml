@@ -62,7 +62,10 @@
     <!-- manually create the appService bean here -->
     <bean id="questionService" class="cs544.letmegiveexam.service.QuestionService" />
     <bean id="questionSetService" class="cs544.letmegiveexam.service.QuestionSetService" />
-    <bean id="crudfasade" class="cs544.letmegiveexam.crudfacade.CRUDEntityFacade" />
+    <bean id="crudfasade" class="cs544.letmegiveexam.crudfacade.CRUDEntityFacade">
+        <property name="sessionFactory" ref="sessionFactory" />
+        </bean>    
+        
    
    <!-- Mail sender configuration -->
    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
