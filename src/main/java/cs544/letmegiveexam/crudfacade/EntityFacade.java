@@ -48,4 +48,5 @@ public interface EntityFacade<T> {
     
     public List findWithNamedQuery(String namedQueryName, Map<String, String> parameters,Map<String, Long> parameters2);
     public User findByUsername(String username);
+     public List getAll(T entity);
 }
