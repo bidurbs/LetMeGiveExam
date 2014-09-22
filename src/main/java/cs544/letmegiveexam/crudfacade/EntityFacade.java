@@ -1,5 +1,6 @@
 package cs544.letmegiveexam.crudfacade;
 
+import cs544.letmegiveexam.model.User;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,6 @@ public interface EntityFacade<T> {
     public Object findWithNativeQuery(String queryName);
     
     public List findWithNamedQuery(String namedQueryName, Map<String, String> parameters,Map<String, Long> parameters2);
-    
-    public List getAll(T entity);
-    
+    public User findByUsername(String username);
+     public List getAll(T entity);
 }

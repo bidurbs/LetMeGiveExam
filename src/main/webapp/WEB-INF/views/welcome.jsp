@@ -17,14 +17,16 @@
         <%--<%@include file="header.jsp" %>--%>
     </head>
     <body>
+         <%@include file="../template/sideBar.jsp"%>
         
-       <a href="${pageContext.request.contextPath}/generateQuestionSet/1"> Start Exam</a>
-       
-              <sec:authorize access="hasRole('ROLE_ADMIN')" >            
-            <a href="adminPanel">admin</a>
-        </sec:authorize>
-        <a href="<%=request.getContextPath()%>/j_spring_security_logout">logout</a>
+<!--       <a href="${pageContext.request.contextPath}/generateQuestionSet/1"> Start Exam</a>
         
+        <fieldset style="width: 40%; position: absolute;"><legend><h3>Login Page!</h3></legend>    
+             <%--<%@include file="login.jsp" %>--%>
+            </fieldset> 
+             
+        
+        <a href="<%=request.getContextPath()%>/j_spring_security_logout">logout</a>-->
         <div id="featureWrap">
             
             <div class="container">
@@ -85,6 +87,6 @@
                     </div>
             </div>
     </div> <!-- /featureWrap -->
-    <a href="${pageContext.request.contextPath}/questionSet/1"> Start Exam</a>
+<!--    <a href="${pageContext.request.contextPath}/questionSet/1"> Start Exam</a>-->
 </body>
 </html>

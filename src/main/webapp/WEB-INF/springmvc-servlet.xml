@@ -31,6 +31,9 @@
     <bean id="userController" class="cs544.letmegiveexam.controller.UserController" > 
         <property name="userServices" ref="userServices" />
     </bean>
+    <bean id="loginController" class="cs544.letmegiveexam.controller.LoginController" > 
+        <property name="userServices" ref="userServices" />
+    </bean>
     <bean id="userServices" class="cs544.letmegiveexam.service.UserServices"/>
     
     <!-- enable custom validation messages -->
@@ -62,8 +65,8 @@
     </bean>
 	
     <!-- Forwards requests to the "/addStudent" resource to the "addStudent" view --> 
-    <mvc:view-controller path="/index" view-name="index"/>
-    <mvc:view-controller path="/login" view-name="login"/>
+    <mvc:view-controller path="/" view-name="index"/>
+<!--    <mvc:view-controller path="/login" view-name="index"/>-->
 	
     <!-- Lets us find resources (.html etc) through the default servlet -->
     <mvc:default-servlet-handler/> 
