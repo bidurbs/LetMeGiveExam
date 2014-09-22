@@ -15,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -63,6 +65,7 @@ public class User implements Serializable {
     @NotBlank
     private String username;
     @NotBlank
+    @Pattern(regexp="^[a-zA-Z]\\w{3,14}$",message = "The password's first character must be a letter, it must contain at least 4 characters and no more than 15 characters and no characters other than letters, numbers and the underscore may be used")
     private String password;
 
     private int lockCount;
