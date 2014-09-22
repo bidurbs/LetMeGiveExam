@@ -37,7 +37,7 @@
             </c:forEach>
                 <tr>
                 <th>Subject</th>
-                <th colspan="5">${question.subject.name}</th>
+                <th colspan="5">${subject.name}</th>
             </tr>
         </table>
         </form:form>

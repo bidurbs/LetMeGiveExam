@@ -55,6 +55,7 @@ public class QuestionSetController implements Serializable{
         List<Question> questionSetQuestions = questionSet.getQuestionslist();
         model.addAttribute("questionSetQuestions", questionSetQuestions);
         model.addAttribute("questionSet", questionSet);
+        model.addAttribute("subject", questionSetQuestions.get(0).getSubject());
         return "listQuestion";
     }
 

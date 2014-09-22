@@ -25,13 +25,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Scope("session")
 public class UserExamController {
     
-    private UserExam userExam;
-    
     @Autowired
     UserExamService userExamService;
     
     @RequestMapping(value = "/polupateResult/{Id}", method = RequestMethod.POST)
     public String startExam(Model model, HttpServletRequest request, @PathVariable long Id) {
+        UserExam userExam = new UserExam();
         userExamService.saveUserExam(userExam);
         return "redirect:/examHistory";
     }
