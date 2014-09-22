@@ -12,20 +12,12 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Admin panel</h1>
-        <form:form action="addSubject" method="post" commandName="subject" >
+        <h1>Welcome to Admin Page!</h1>        
         <table>
-            <caption>Add Subjects</caption>
-            <tr>                
-                    <td>Subject Name:</td>
-                    <!--<td><form:input type="text" path="name" /></td>-->
-                </tr>
-                <tr>
-                    <td>Description:</td>
-                    <!--<td><form:input type="text" path="description" /></td>-->
-                </tr>                 
-                <input type="submit"/>
+            <caption></caption>
+            <tr><td> <a href="adminSubjects"> Subject Setting</a>    </td></tr>
+            <tr><td> <a href="questionSetting">Add Question</a>     </td></tr>
+            <tr><td><a href="<%=request.getContextPath()%>/j_spring_security_logout">logout</a></td></tr>
         </table>
-        </form:form>
     </body>
 </html>

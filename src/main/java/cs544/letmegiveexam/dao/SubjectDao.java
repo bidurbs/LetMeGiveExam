@@ -27,5 +27,9 @@ public class SubjectDao {
 	public List<Subject> getSubjects() {
 		return sessionFactory.getCurrentSession().createQuery("from Subject").list();
 	}
+
+    public void addSubject(Subject subject) {
+        sessionFactory.getCurrentSession().persist(subject);
+    }
     
 }
