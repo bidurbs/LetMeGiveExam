@@ -6,17 +6,21 @@
 
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.EntityFacade;
+import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
 import cs544.letmegiveexam.model.UserExam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Arjun
  */
-public class UserExamServices {
+@Service
+@Transactional
+public class UserExamService {
     @Autowired
-    private EntityFacade crudfasade;
+    private CRUDEntityFacade crudfasade;
     
     public void updateUserExam(UserExam userExam) {
         crudfasade.update(userExam);

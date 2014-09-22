@@ -3,14 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cs544.letmegiveexam.controller;
 
 import cs544.letmegiveexam.model.Question;
-import cs544.letmegiveexam.model.QuestionSet;
-import cs544.letmegiveexam.model.UserExam;
 import cs544.letmegiveexam.service.QuestionService;
-import cs544.letmegiveexam.service.QuestionSetService;
+import java.io.Serializable;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,41 +23,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 
-public class QuestionSetController {
+public class QuestionSetController implements Serializable{
+
     @Autowired
     QuestionService questionService;
-    
-    @Autowired
-    QuestionSetService questionSetService;
-    
-    private QuestionSet questionSet;
-    
-    private UserExam userExam;
-    
-    @RequestMapping(value = "/questionSet/{Id}", method = RequestMethod.GET)
-    public String createQuestionSet(Model model, HttpServletRequest request, @PathVariable long Id) {
-        
-        List<Question> questionList = questionService.getQuestionsBySubjectId(Id);
-        
-        questionSet.setQuestionslist(questionList);
-        questionSetService.saveQuestionSet(questionSet);
-        
-        model.addAttribute("questions", questionList);
-        
-        model.addAttribute("questionSet", questionSet);
-        
 
-        //System.out.println(questionService.getQuestionsBySubjectId(Id));
+    
+    @RequestMapping(value = "/generateQuestionSet/{Id}", method = RequestMethod.GET)
+    public String createQuestionSet(HttpServletRequest request, @PathVariable long Id) {
+
+        List<Question> questionList = questionService.getAll();
+        
+        for (Question q : questionList) {
+            System.out.println(q.getQuestion() + " options: " + q.getOption1() + q.getOption2() + q.getOption3() + q.getOption4());
+        }
+        //questionSet.setQuestionslist(questionList);
+        //questionSetService.saveQuestionSet(questionSet);
+        //session.addAttribute("questionListForExam", questionSet;
+        return "redirect:/questionSet/";//+ questionSet.getId();
+    }
+
+//    public QuestionSet getQuestionSet() {
+//        return questionSet;
+//    }
+//
+//    public void setQuestionSet(QuestionSet questionSet) {
+//        this.questionSet = questionSet;
+//    }
+
+    @RequestMapping(value = "/questionSet/{Id}", method = RequestMethod.GET)
+    public String startExam(Model model, HttpServletRequest request, @PathVariable long Id) {
+//        model.addAttribute("questionSetQuestions", questionSet.getQuestionslist());
+//        model.addAttribute("questionSet", questionSet);
         return "listQuestion";
     }
 
-    public QuestionSet getQuestionSet() {
-        return questionSet;
-    }
-
-    public void setQuestionSet(QuestionSet questionSet) {
-        this.questionSet = questionSet;
-    }
-    
-    
 }

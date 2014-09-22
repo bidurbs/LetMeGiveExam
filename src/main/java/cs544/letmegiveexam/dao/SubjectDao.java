@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 
-package cs544.letmegiveexam.Dao1;
+package cs544.letmegiveexam.dao;
 
 import cs544.letmegiveexam.model.Subject;
-import java.util.Collection;
 import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

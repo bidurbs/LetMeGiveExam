@@ -6,17 +6,21 @@
 
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.EntityFacade;
+import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
 import cs544.letmegiveexam.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Arjun
  */
+@Service
+@Transactional
 public class UserServices {
     @Autowired
-    private EntityFacade crudfasade;
+    private CRUDEntityFacade crudfasade;
     
     public void updateUser(User user) {
         crudfasade.update(user);
@@ -36,7 +40,7 @@ public class UserServices {
         public void createUser(User user){
            User u= (User) crudfasade.create(user);
             System.out.println("generated user Id " + u.getId());
-           crudfasade.createAuthority(u);
+           //crudfasade.createAuthority(u);
                      
             System.out.println(u.getUsername());
         }

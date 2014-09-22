@@ -18,46 +18,47 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "Question")
-@SecondaryTable(name="Answers")
+@SecondaryTable(name = "Answers")
 @NamedQueries({
-    @NamedQuery(name="Question.findAll", query = "SELECT q FROM Question q"),
-    @NamedQuery(name="Question.findById", query = "SELECT q FROM Question q WHERE q.id= :id"),
-    @NamedQuery(name="Question.findBySubject", query = "SELECT q FROM Question q WHERE q.question= :question"),
-    @NamedQuery(name="Question.findByDifficultyLevel", query = "SELECT q FROM Question q WHERE q.difficultyLevel= :difficultyLevel"),
-    @NamedQuery(name="Question.findByQuestion", query = "SELECT q FROM Question q WHERE q.question= :question"),
-    @NamedQuery(name="Question.findByCorrectAnswer", query = "SELECT q FROM Question q WHERE q.correctAnswer= :correctAnswer")
+    @NamedQuery(name = "Question.findAll", query = "FROM Question q"),
+    @NamedQuery(name = "Question.findById", query = "SELECT q FROM Question q WHERE q.id= :id"),
+    @NamedQuery(name = "Question.findBySubject", query = "FROM Question q WHERE q.subject.id= :subjectId"),
+    @NamedQuery(name = "Question.findByDifficultyLevel", query = "SELECT q FROM Question q WHERE q.difficultyLevel= :difficultyLevel"),
+    @NamedQuery(name = "Question.findByQuestion", query = "SELECT q FROM Question q WHERE q.question= :question"),
+    @NamedQuery(name = "Question.findByCorrectAnswer", query = "SELECT q FROM Question q WHERE q.correctAnswer= :correctAnswer")
 })
 public class Question implements Serializable {
+
     @Id
     @GeneratedValue
     private long id;
     @ManyToOne
     @JoinColumn(name = "subject_id", nullable = false)
-    
+
     private Subject subject;
-    
-    @Column(name="Difficulty_Level")        
+
+    @Column(name = "Difficulty_Level")
     private int difficultyLevel;
-    
-    @Column(name="Question")    
+
+    @Column(name = "Question")
     private String question;
-    
-    @Column(name="CorrectAnswer")    
+
+    @Column(name = "CorrectAnswer")
     private String correctAnswer;
-    
+
     @Column(table = "Answers")
     private String option1;
-    
+
     @Column(table = "Answers")
     private String option2;
-    
+
     @Column(table = "Answers")
     private String option3;
-    
+
     @Column(table = "Answers")
     private String option4;
 
-    public Question() {        
+    public Question() {
     }
 
     public String getOption1() {
@@ -135,5 +136,4 @@ public class Question implements Serializable {
         this.correctAnswer = correctAnswer;
     }
 
-   
 }

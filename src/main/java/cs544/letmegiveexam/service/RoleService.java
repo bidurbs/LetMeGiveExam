@@ -6,17 +6,21 @@
 
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.EntityFacade;
+import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
 import cs544.letmegiveexam.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author Arjun
  */
+@Service
+@Transactional
 public class RoleService {
     @Autowired
-    private EntityFacade crudfasade;
+    private CRUDEntityFacade crudfasade;
     
     public void updateRole(Role role) {
         crudfasade.update(role);

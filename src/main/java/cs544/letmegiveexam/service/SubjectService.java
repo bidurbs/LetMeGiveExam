@@ -5,7 +5,7 @@
  */
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.Dao1.SubjectDao;
+import cs544.letmegiveexam.dao.SubjectDao;
 import cs544.letmegiveexam.crudfacade.EntityFacade;
 import cs544.letmegiveexam.model.Subject;
 import java.util.List;
