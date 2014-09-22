@@ -36,12 +36,8 @@ public class UserController {
        user.setEnabled(true);
        user.setLockCount(0);
        user.setLockTime(new java.util.Date());
-       user.setRole_id(1);
-       
-       
-        userServices.createUser(user);
-          
-       
+       user.setRole_id(1);              
+        userServices.createUser(user);                 
         System.out.println(user.getFirstName() + " " + user.getLastName());
       return "registerSuccess";
    }

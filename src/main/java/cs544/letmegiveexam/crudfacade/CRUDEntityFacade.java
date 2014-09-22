@@ -137,7 +137,7 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
      */
     @Override
     public List findWithNamedQuery(String queryName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return sessionFactory.getCurrentSession().getNamedQuery(queryName).list();
     }
     
     /**
@@ -207,5 +207,10 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
     @Override
     public List findWithNamedQuery(String namedQueryName, Map<String, String> parameters, Map<String, Long> parameters2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List getAll(T entity) {
+        return sessionFactory.getCurrentSession().createCriteria(entity.getClass()).list();
     }
 }

@@ -30,7 +30,7 @@ public class AdminController {
         }
         
         
-        @RequestMapping(value="/subjects", method=RequestMethod.GET)
+        @RequestMapping(value="/adminSubjects", method=RequestMethod.GET)
 	public String getAll(Model model) {
 		model.addAttribute("subjects", subjectService.getAll());
 		return "subjectList";
