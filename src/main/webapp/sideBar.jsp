@@ -1,0 +1,17 @@
+<%-- 
+    Document   : sideBar
+    Created on : Sep 21, 2014, 3:57:52 PM
+    Author     : Arjun
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Side Bar</h1>
+    </body>
+</html>

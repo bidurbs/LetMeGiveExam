@@ -17,11 +17,17 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
 
-
+        <context:component-scan base-package="cs544"></context:component-scan>
+	<context:annotation-config></context:annotation-config>
+	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
     <!-- find controller and repository beans -->
     <mvc:annotation-driven />
+    
    
-    <context:component-scan base-package="cs544" />
+    <!--<context:component-scan base-package="cs544" />-->
     <bean id="userController" class="cs544.letmegiveexam.controller.UserController" > 
         <property name="userServices" ref="userServices" />
     </bean>

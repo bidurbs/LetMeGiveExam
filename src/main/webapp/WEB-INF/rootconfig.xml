@@ -51,14 +51,6 @@
         </property>
     </bean>
 
-    <bean id="txManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory" />
-    </bean>
-
-    <!-- look for transaction annotations in  the files -->
-    <tx:annotation-driven transaction-manager="txManager" />
-    
     <!-- manually create the appService bean here -->
     <bean id="questionService" class="cs544.letmegiveexam.service.QuestionService" />
     <bean id="questionSetService" class="cs544.letmegiveexam.service.QuestionSetService" />

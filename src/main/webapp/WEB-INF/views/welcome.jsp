@@ -20,5 +20,10 @@
        <!-- <fieldset style="width: 40%; position: absolute;"><legend><h3>Login Page!</h3></legend>    
              <%--<%@include file="login.jsp" %>--%>
             </fieldset> -->
+             
+              <sec:authorize access="hasRole('ROLE_ADMIN')" >
+            <a href="subjects">admin</a>
+        </sec:authorize>
+        <a href="<%=request.getContextPath()%>/j_spring_security_logout">logout</a>
     </body>
 </html>

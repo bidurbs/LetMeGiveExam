@@ -22,6 +22,10 @@ import javax.persistence.Table;
     })
 public class Subject implements Serializable {
 
+     public long getId() {
+        return id;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
