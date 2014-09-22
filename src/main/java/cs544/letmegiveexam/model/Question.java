@@ -1,6 +1,7 @@
 package cs544.letmegiveexam.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,7 @@ public class Question implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "subject_id", nullable = false)
 
     private Subject subject;
