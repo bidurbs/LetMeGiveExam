@@ -9,6 +9,7 @@ package cs544.letmegiveexam.controller;
 import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.service.UserServices;
 import java.util.Date;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +27,7 @@ public class UserController {
     
     
    @RequestMapping(value = "/register", method = RequestMethod.GET)
-   public String student(ModelMap model) {
+   public String register(ModelMap model) {
        model.addAttribute("user", new User());
       return "register";
    }
@@ -49,6 +50,18 @@ public class UserController {
     public void setUserServices(UserServices userServices) {
         this.userServices = userServices;
     }
+    @RequestMapping(value = "/viewProfile", method = RequestMethod.GET)
+    public String viewprofile(ModelMap model, HttpSession session) {
+      if(session.getAttribute("user")!=null){
+           model.addAttribute("user",(User) session.getAttribute("user") );
+         
+      }else{
+          model.addAttribute("user", new User());
+      }
+        return "viewProfile";
+      
+    }
+    
     
    
    

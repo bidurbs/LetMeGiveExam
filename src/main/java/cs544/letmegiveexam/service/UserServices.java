@@ -6,13 +6,12 @@
 
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
 import cs544.letmegiveexam.crudfacade.EntityFacade;
-import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.util.EmailManager;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 /**
@@ -37,6 +36,10 @@ public class UserServices {
  
     public User getUserById(Long Id) {
         return (User) cRUDEntityFacade.read(Id, User.class);
+    }
+     public User getUserByUsername(String username) {        
+            
+        return  cRUDEntityFacade.findByUsername(username);
     }
 
     public void deleteUser(User user) {

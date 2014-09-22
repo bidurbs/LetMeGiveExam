@@ -28,19 +28,7 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
 
     private boolean operationSuccessful;
 
-    public void setEntityClass(Class entityClass) {
-        this.entityClass = entityClass;
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    public void setOperationSuccessful(boolean operationSuccessful) {
-        this.operationSuccessful = operationSuccessful;
-    }
-
-      
+    
     /**
      *
      * @param entity
@@ -73,7 +61,16 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
         return entity;
         
     }
-
+    @Override
+    public User findByUsername(String username){
+        String sql="FROM User u WHERE u.username= :username";
+        Query query=sessionFactory.getCurrentSession().createQuery(sql);
+        query.setParameter("username", username);
+        
+       List<User> user=query.list();
+        
+        return user.get(0);
+    }
     /**
      *
      * @param primaryKey
@@ -86,6 +83,7 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
             IllegalArgumentException {
         return (T) sessionFactory.getCurrentSession().get(c, primaryKey);
     }
+    
 
     /**
      *
@@ -208,4 +206,18 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
     public List findWithNamedQuery(String namedQueryName, Map<String, String> parameters, Map<String, Long> parameters2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public void setEntityClass(Class entityClass) {
+        this.entityClass = entityClass;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public void setOperationSuccessful(boolean operationSuccessful) {
+        this.operationSuccessful = operationSuccessful;
+    }
+
+      
 }
