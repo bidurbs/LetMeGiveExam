@@ -52,7 +52,7 @@ public class QuestionService {
     }
     
     @Transactional(propagation = Propagation.REQUIRED)
-    public List<Question> getQuestionsByQuestionId(long Id, int questionLimit) {
+    public List<Question> getRandomQuestionsBySubjectId(long Id, int questionLimit) {
         return questionDAO.getAllBySubjectId(Id, questionLimit);
     }
 

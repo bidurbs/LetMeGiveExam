@@ -66,6 +66,19 @@ public class Question implements Serializable {
     public Question() {
     }
 
+    public Question(Subject subject, String difficultyLevel, String question, String correctAnswer, String option1, String option2, String option3, String option4) {
+        this.subject = subject;
+        this.difficultyLevel = difficultyLevel;
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
+    }
+    
+    
+
     public String getOption1() {
         return option1;
     }

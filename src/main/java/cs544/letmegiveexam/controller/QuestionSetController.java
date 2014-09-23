@@ -45,7 +45,7 @@ public class QuestionSetController implements Serializable {
     public String createQuestionSet(HttpServletRequest request, @PathVariable long Id) {
         //Admin define value
         int questionLimit = 1;
-        List<Question> questionList = questionService.getQuestionsByQuestionId(Id, questionLimit); //TODO
+        List<Question> questionList = questionService.getRandomQuestionsBySubjectId(Id, questionLimit); //TODO
 
         QuestionSet questionSet = new QuestionSet(questionList);
         long questionSetId = questionSetService.add(questionSet);
