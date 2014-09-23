@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Arjun
  */
 @Service
-@Transactional
 public class RoleService {
     @Autowired
     private CRUDEntityFacade crudfasade;

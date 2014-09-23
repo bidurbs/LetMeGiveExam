@@ -12,7 +12,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
-    <body>        
+    <body>  
+        <%@include file="../template/sideBar.jsp"%>
         <form:form commandName="question" action="addQuestion" method="post">
             <form:errors path="*" cssClass="errorblock" element="div" />      
 

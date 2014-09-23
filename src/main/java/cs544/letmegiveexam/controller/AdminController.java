@@ -6,8 +6,10 @@
 package cs544.letmegiveexam.controller;
 
 import cs544.letmegiveexam.model.Question;
+import cs544.letmegiveexam.model.Setting;
 import cs544.letmegiveexam.model.Subject;
 import cs544.letmegiveexam.service.QuestionService;
+import cs544.letmegiveexam.service.SettingService;
 import cs544.letmegiveexam.service.SubjectService;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class AdminController {
 
     @Autowired
     QuestionService questionService;
+    
+     @Autowired
+    SettingService settingService;          
 
     @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
     public String addSubject(@Valid Subject subject, BindingResult result) {
@@ -40,8 +45,8 @@ public class AdminController {
             return "redirect:/questionSetting";
         }
     }
-    
-     @RequestMapping(value = "addQuestion", method = RequestMethod.GET)
+
+    @RequestMapping(value = "addQuestion", method = RequestMethod.GET)
     public String addQuestion(Model model) {
         model.addAttribute("queston", new Question());
         return "addQuestion";
@@ -92,5 +97,24 @@ public class AdminController {
         model.addAttribute("subjects", subjectService.getAll());
         model.addAttribute("question", new Question());
         return "addQuestion";
+    }
+    
+     @RequestMapping(value = "/adminEditSetting", method = RequestMethod.GET)
+    public String adminSetting(Model model) {
+        model.addAttribute("setting", new Setting());
+        model.addAttribute("currentSetting",settingService.getSetting());
+        return "adminEditSetting";
+    }
+    
+    @RequestMapping(value = "/adminEditSetting", method = RequestMethod.POST)
+    public String adminSetting(@Valid Setting setting, BindingResult result) {
+        if (result.hasErrors()) {
+            return "adminEditSetting";
+        } else { 
+            long id=1;
+            setting.setId(id);
+            settingService.updateSetting(setting);
+            return "redirect:/adminPanel";
+        }
     }
 }

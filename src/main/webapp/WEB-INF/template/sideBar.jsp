@@ -31,9 +31,10 @@
                 
                 <sec:authorize access="hasRole('ROLE_ADMIN')" >
                          
-                          <li><a href="adminSubjects"> Subject Setting</a></li>
-                           <li><a href="questionSetting">Add Question</a>  </li>
-                           
+                          <li><a href="adminSubjects"> Subjects</a></li>
+                          <li><a href="questionSetting">Add Question</a>  </li>
+                          <li><a href="adminEditSetting">Setting</a>  </li>
+                          
                 </sec:authorize>
                
                 <li><a href="logout" >Logout</a></li>

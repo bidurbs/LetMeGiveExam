@@ -12,9 +12,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Welcome to Admin Page!</h1>        
-        <table>
-            <caption></caption>
+           <%@include file="../template/sideBar.jsp"%>
+        <h2 style="background-color: blueviolet">Welcome to Admin Page!</h2>        
+        <table>            
             <tr><td> <a href="adminSubjects"> Subject Setting</a>    </td></tr>
             <tr><td> <a href="questionSetting">Add Question</a>     </td></tr>
             <tr><td><a href="<%=request.getContextPath()%>/j_spring_security_logout">logout</a></td></tr>
