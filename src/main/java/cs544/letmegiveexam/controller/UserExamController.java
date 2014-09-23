@@ -38,6 +38,7 @@ public class UserExamController {
             //calculate the currect answers
             List<Question> questionList = userExam.getQuestionSet().getQuestionslist();
             int score = calcualteResult(questionList);
+             System.out.println("Score:"+score);
             userExam.setScore(score);
             userExam.setDuration("5");//currentTimestamp,userExam.getStartTime()); // minutes
             userExamService.update(userExam);
@@ -48,6 +49,7 @@ public class UserExamController {
     private int calcualteResult(List<Question> questionLIst){
         int result =0;
         for(Question question: questionLIst){
+            System.out.println("QuesId:+"+question.getId()+" ,UserAnswer:"+question.getUserAnswer()+" Correct Answer:"+question.getCorrectAnswer());
             if(question.getUserAnswer().equalsIgnoreCase(question.getCorrectAnswer())){
                 result ++;
             }

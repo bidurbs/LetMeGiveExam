@@ -29,15 +29,15 @@ public class QuestionService {
     @Autowired
     QuestionDAO questionDAO;
     
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void updateQuestion(Question question) {
         crudfasade.update(question);
     }
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public Question getQuestionById(Long Id) {
         return (Question) crudfasade.read(Id, Question.class);
     }
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void deleteQuestion(Question question) {
         crudfasade.delete(question);
     }
@@ -46,7 +46,7 @@ public class QuestionService {
         crudfasade.save(question);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<Question> getAll() {
         return questionDAO.getAll();
     }

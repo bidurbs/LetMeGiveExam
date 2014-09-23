@@ -55,14 +55,14 @@ public class QuestionSetController implements Serializable {
     }
 
     @RequestMapping(value = "/questionSet/{Id}", method = RequestMethod.GET)
-    public String startExam(Model model, HttpServletRequest request,HttpSession session, @PathVariable long Id) {
+    public String startExam(Model model, HttpServletRequest request, HttpSession session, @PathVariable long Id) {
         QuestionSet questionSet = questionSetService.get(Id);
 
         //save exam for user
         java.util.Date date = new java.util.Date();
         Timestamp currentTimestamp = new Timestamp(date.getTime());
         //get user object from session
-       User user=(User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         UserExam userExam = null;
         List<Question> questionSetQuestions = null;
         if (questionSet != null) {
@@ -71,6 +71,9 @@ public class QuestionSetController implements Serializable {
 
             //put list of questions in session
             questionSetQuestions = questionSet.getQuestionslist();
+        }
+        for (Question qes : questionSetQuestions) {
+            System.out.println("Question:" + qes.getSubject());
         }
         model.addAttribute("questionSetQuestions", questionSetQuestions);
         model.addAttribute("questionSet", questionSet);
