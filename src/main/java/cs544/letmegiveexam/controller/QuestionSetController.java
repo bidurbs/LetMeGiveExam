@@ -43,12 +43,10 @@ public class QuestionSetController implements Serializable {
 
     @RequestMapping(value = "/generateQuestionSet/{Id}", method = RequestMethod.GET)
     public String createQuestionSet(HttpServletRequest request, @PathVariable long Id) {
+        //Admin define value
+        int questionLimit = 1;
+        List<Question> questionList = questionService.getQuestionsByQuestionId(Id, questionLimit); //TODO
 
-        List<Question> questionList = questionService.getAll(); //TODO
-
-        for (Question q : questionList) {
-            System.out.println(q.getQuestion() + " options: " + q.getOption1() + q.getOption2() + q.getOption3() + q.getOption4());
-        }
         QuestionSet questionSet = new QuestionSet(questionList);
         long questionSetId = questionSetService.add(questionSet);
         return "redirect:/questionSet/" + questionSetId;
