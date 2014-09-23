@@ -13,6 +13,8 @@
     <!-- needed for security tag lib expression support -->
     <beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
     <beans:bean id="customfailurehandler" class="cs544.letmegiveexam.util.CustomFailureHandler"/>
+    <beans:bean id="customSuccesshandler" class="cs544.letmegiveexam.util.CustomSucessHandler"/>
+    
     <http pattern="/" security="none" />
     <http pattern="/resources/**" security="none" />
     
@@ -27,7 +29,7 @@
 <!--        <intercept-url pattern="/**" access="ROLE_ADMIN" method="GET" />
         <intercept-url pattern="/**" access="ROLE_USER" method="GET" />-->
         <form-login login-page="/login"  
-                    default-target-url="/welcome" authentication-failure-handler-ref="customfailurehandler"/>
+                    authentication-success-handler-ref="customSuccesshandler" authentication-failure-handler-ref="customfailurehandler"/>
         <logout logout-success-url="/"/>
     </http>
     

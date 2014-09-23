@@ -41,7 +41,7 @@ public class UserController {
         } else {
             user.setEnabled(true);
             user.setLockCount(0);
-            user.setLockTime(new java.util.Date());
+            user.setLockTime(null);
             user.setRole_id(1);
             userServices.createUser(user);
             
