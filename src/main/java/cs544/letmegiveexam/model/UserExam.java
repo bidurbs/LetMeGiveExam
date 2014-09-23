@@ -1,6 +1,7 @@
 package cs544.letmegiveexam.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -99,7 +100,13 @@ public class UserExam implements Serializable {
     }
 
     public void setQuestionSet(QuestionSet questionSet) {
-        this.questionSet = questionSet;
+       if(questionSet == null)
+        {
+            this.questionSet = new QuestionSet();
+        }
+        else{
+            this.questionSet = questionSet;
+        }
     }
     
     

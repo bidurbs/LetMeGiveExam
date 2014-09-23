@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -59,26 +60,27 @@ public class QuestionSetController implements Serializable {
         QuestionSet questionSet = questionSetService.get(Id);
 
         //save exam for user
-        java.util.Date date = new java.util.Date();
-        Timestamp currentTimestamp = new Timestamp(date.getTime());
-        //get user object from session
-        User user = (User) session.getAttribute("user");
-        UserExam userExam = null;
-        List<Question> questionSetQuestions = null;
-        if (questionSet != null) {
-            userExam = new UserExam(currentTimestamp, user, questionSet);
-            userExamService.add(userExam);
-
-            //put list of questions in session
-            questionSetQuestions = questionSet.getQuestionslist();
-        }
-        for (Question qes : questionSetQuestions) {
-            System.out.println("Question:" + qes.getSubject());
-        }
-        model.addAttribute("questionSetQuestions", questionSetQuestions);
+//        java.util.Date date = new java.util.Date();
+//        Timestamp currentTimestamp = new Timestamp(date.getTime());
+//        //get user object from session
+//        User user = (User) session.getAttribute("user");
+//        UserExam userExam = null;
+//        // List<Question> questionSetQuestions = null;
+//        if (questionSet != null) {
+//            userExam = new UserExam(currentTimestamp, user, questionSet);
+//            userExamService.add(userExam);
+//
+//            //put list of questions in session
+//            // questionSetQuestions = userExam.getQuestionSet().getQuestionslist();
+//        }
+//        for (Question qes : questionSetQuestions) {
+//            System.out.println("Question:" + qes.getSubject());
+//        }
+       // model.addAttribute("questionSetQuestions", userExam.getQuestionSet().getQuestionslist());
+        //session.setAttribute("questionSet", questionSet);
         model.addAttribute("questionSet", questionSet);
-        model.addAttribute("subject", questionSetQuestions.get(0).getSubject());
-        model.addAttribute("userExam", userExam);
+      //  model.addAttribute("subject", userExam.getQuestionSet().getQuestionslist().get(0).getSubject());
+       // model.addAttribute("userExam", userExam);
         return "listQuestion";
     }
 

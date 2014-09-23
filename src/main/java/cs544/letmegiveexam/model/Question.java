@@ -34,7 +34,7 @@ public class Question implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "subject_id", nullable = false)
 
     private Subject subject;

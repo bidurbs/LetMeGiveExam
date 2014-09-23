@@ -16,27 +16,31 @@
     </head>
     <body>
         <h1>Question List!</h1>
-        <h2>${subject.name}</h2>
-        <form:form commandName="userExam" action="../populateResult/${userExam.id}" method="post">
+        <h2>${questionSet.questionslist[0].subject.name}</h2>        
+        <form:form commandName="questionSet" action="../populateResult/${questionSet.id}" method="post">
 
             <table>
-                
-                <c:if test="${questionSetQuestions != null}">                                                                     
-                    <c:forEach var="question" items="${questionSetQuestions}" varStatus="qnum">
+
+                <c:if test="${questionSet.questionslist != null}">                                                                     
+                    <c:forEach var="question" items="${questionSet.questionslist}" varStatus="qnum">
                         <tr> <td>
                                 <b>${qnum.index +1}</b>) ${question.question}</td></tr>
                         </br>
-                        <tr> <td><form:radiobutton path="questionSet.questionslist[${qnum.index}].userAnswer" value="${question.option1}"/> ${question.option1}
-                                <form:radiobutton path="questionSet.questionslist[${qnum.index}].userAnswer" value="${question.option2}"/>${question.option2}
-                                    <form:radiobutton path="questionSet.questionslist[${qnum.index}].userAnswer" value="${question.option3}"/>${question.option3}
-                                    <form:radiobutton path="questionSet.questionslist[${qnum.index}].userAnswer" value="${question.option4}"/>${question.option4}</td></tr>                    
+                        <tr> <td><c:if test="${question.option1 != null}">   
+                                    <form:radiobutton id="${question.id}" path="questionslist[${qnum.index}].userAnswer" value="${question.option1}"/> ${question.option1} </c:if>
+                                <c:if test="${question.option2 != null}"> 
+                                    <form:radiobutton id="${question.id}" path="questionslist[${qnum.index}].userAnswer" value="${question.option2}"/>${question.option2}</c:if>
+                                <c:if test="${question.option3 != null}"> 
+                                    <form:radiobutton id="${question.id}" path="questionslist[${qnum.index}].userAnswer" value="${question.option3}"/>${question.option3}</c:if>
+                                <c:if test="${question.option4 != null}"> 
+                                    <form:radiobutton id="${question.id}" path="questionslist[${qnum.index}].userAnswer" value="${question.option4}"/>${question.option4}</c:if></td></tr>                    
                             </br>
-       
+
                     </c:forEach>  
                 </c:if>
-               
+
             </table>
-             <input type="submit" />
+            <input type="submit" />             
         </form:form>       
     </body>
 </html>

@@ -39,7 +39,7 @@ public class UserExamService {
     }
     
     @Transactional(propagation = Propagation.REQUIRED)
-    public List<UserExam> getUserExam(long userId) {
+    public List<UserExam> getUserExam(int userId) {
         return userExamDAO.getUserExam(userId);
     }
 }
