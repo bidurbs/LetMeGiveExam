@@ -23,8 +23,9 @@
         <context:component-scan base-package="cs544"></context:component-scan>
 	<context:annotation-config></context:annotation-config>
          <aop:aspectj-autoproxy proxy-target-class="true"/>
-     <bean id="emailAspect"  class="cs544.letmegiveexam.aspect.EmailAspect" />
-     <bean id="logAdvice"  class="cs544.letmegiveexam.aspect.LogAdvice" />
+        <bean id="emailAspect"  class="cs544.letmegiveexam.aspect.EmailAspect" />
+         <bean id="logAdvice"  class="cs544.letmegiveexam.aspect.LogAdvice" />
+         <bean id="logger" class="cs544.letmegiveexam.aspect.Logger"/>
 	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
 	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>

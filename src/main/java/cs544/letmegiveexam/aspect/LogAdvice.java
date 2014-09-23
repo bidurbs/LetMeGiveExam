@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
 
@@ -21,8 +22,9 @@ import org.springframework.ui.Model;
  */
 @Aspect
 public class LogAdvice {
+    @Autowired
+    Logger logger;
     
-    private ILogger logger;
     @After("execution (* cs544.letmegiveexam.controller.LoginController.welcome(..))&& args(model,session) ")
     public void logMethodCalls(JoinPoint point, Model model,HttpSession session) {
         User user=(User)session.getAttribute("user");
