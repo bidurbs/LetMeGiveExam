@@ -51,7 +51,8 @@ public class Question implements Serializable {
         this.subjectId = subjectId;
     }
 
-    private String userAnswer;
+    @Transient
+    private String userAnswer;    
 
     @Column(name = "Difficulty_Level")
     private String difficultyLevel;
@@ -151,7 +152,7 @@ public class Question implements Serializable {
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
-
+    
     public String getUserAnswer() {
         return userAnswer;
     }
