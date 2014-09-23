@@ -8,6 +8,7 @@ package cs544.letmegiveexam.controller;
 import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.UserExam;
 import cs544.letmegiveexam.service.UserExamService;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,16 @@ public class UserExamController {
     @Autowired
     UserExamService userExamService;
 
-    @RequestMapping(value = "/polupateResult", method = RequestMethod.POST)
+    @RequestMapping(value = "/populateResult", method = RequestMethod.POST)
     public String sumbitExam(@Valid UserExam userExam, BindingResult result) {
         if (!result.hasErrors()) {
+            java.util.Date date = new java.util.Date();
+        Timestamp currentTimestamp = new Timestamp(date.getTime());
             //calculate the currect answers
             List<Question> questionList = userExam.getQuestionSet().getQuestionslist();
             int score = calcualteResult(questionList);
             userExam.setScore(score);
-            userExam.setDuration("5"); // minutes
+            userExam.setDuration("5");//currentTimestamp,userExam.getStartTime()); // minutes
             userExamService.update(userExam);
         }
         return "redirect:/examHistory";
@@ -45,7 +48,7 @@ public class UserExamController {
     private int calcualteResult(List<Question> questionLIst){
         int result =0;
         for(Question question: questionLIst){
-            if(question.getCorrectAnswer().equals(question.getCorrectAnswer())){
+            if(question.getUserAnswer().equalsIgnoreCase(question.getCorrectAnswer())){
                 result ++;
             }
         }
