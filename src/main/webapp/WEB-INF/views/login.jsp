@@ -23,6 +23,17 @@
                 <tr> <c:if test="${error eq true}">
                     <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
                 </c:if></tr>
+        <tr>
+            <c:if test="${not empty sessionScope.error}">
+		<c:if test="${'1' eq sessionScope.error}">
+                    Your Account is Locked
+		</c:if>
+		<c:if test="${'2' eq sessionScope.error}">
+                    Invalid Username or Password.
+		</c:if>
+			<c:remove var="error" scope="session"/>
+		</c:if>
+        </tr>
 
                 <form method="post" action="<c:url value='j_spring_security_check' />">
                     <tr>

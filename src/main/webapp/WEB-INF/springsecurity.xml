@@ -12,7 +12,7 @@
 
     <!-- needed for security tag lib expression support -->
     <beans:bean id="webexpressionHandler" class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" /> 
-    
+    <beans:bean id="customfailurehandler" class="cs544.letmegiveexam.util.CustomFailureHandler"/>
     <http pattern="/" security="none" />
     <http pattern="/resources/**" security="none" />
     
@@ -21,14 +21,16 @@
         <intercept-url pattern="/register*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/addUser" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        
         <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN, ROLE_USER" />
-       
-        <intercept-url pattern="/**" access="ROLE_ADMIN" method="GET" />
-        <intercept-url pattern="/**" access="ROLE_USER" method="GET" />
-        <form-login login-page="/login" authentication-failure-url="/loginfailed" 
-                    default-target-url="/welcome"/>
+        <intercept-url pattern="/**" method="GET" access="ROLE_ADMIN, ROLE_USER" />
+<!--        <intercept-url pattern="/**" access="ROLE_ADMIN" method="GET" />
+        <intercept-url pattern="/**" access="ROLE_USER" method="GET" />-->
+        <form-login login-page="/login"  
+                    default-target-url="/welcome" authentication-failure-handler-ref="customfailurehandler"/>
         <logout logout-success-url="/"/>
     </http>
+    
  
     <!--JDBC Authenticator-->
     <authentication-manager>
