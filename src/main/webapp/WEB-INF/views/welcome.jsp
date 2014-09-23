@@ -40,13 +40,13 @@
                                       <h4>Available Subjects</h4>
                                        <p>
                                           <table class="table table-striped">    
-                     <td>Name</td>
-                     <td>Description</td>
+<!--                     <td>Name</td>
+                     <td>Description</td>-->
                      
                 <c:forEach items="${subjects}" var="subject">
                  <tr>      
-                     <td>${subject.name}</td>   
-                     <td>${subject.description}</td>
+                      <td><a href="generateQuestionSet/${subject.id}">${subject.name}</a></td>   
+                      <td><text>${subject.description}<text></td>
                      
                  </tr>
                </c:forEach>
@@ -60,9 +60,10 @@
                                     <p>
                                           <ul class="nav nav-tabs" role="tablist">
                                             <li class="active">
-                                                <a href="#login" role="tab" data-toggle="tab">
+<!--                                                <a href="#login" role="tab" data-toggle="tab">
                                                     <h5 style="margin-bottom:0px;margin-top:0px">Log in</h5>
-                                                </a>
+                                                </a>-->
+                                                   <a href="login.jsp">Login</a>
                                             </li>
          
                                           </ul>

@@ -47,7 +47,7 @@ public class UserExamDAO {
     }
 
     public void add(UserExam userExam) {
-        openSession().persist(userExam);
+        openSession().save(userExam);
     }
 
     public UserExam get(long id) {

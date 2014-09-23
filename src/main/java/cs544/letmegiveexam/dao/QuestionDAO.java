@@ -7,6 +7,7 @@ package cs544.letmegiveexam.dao;
 
 import cs544.letmegiveexam.model.Question;
 import java.util.List;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +60,13 @@ public class QuestionDAO {
     public void delete(int questionId) {
         Question c = get(questionId);
         openSession().delete(c);
+    }
+
+    public List<Question> getAllBySubjectId(long Id, int questionLimit) {
+        Query q = sessionFactory.getCurrentSession().createQuery("from Question q where q.subject.id= :subjectId order by rand()");
+        q.setParameter("subjectId", Id);
+        q.setMaxResults(questionLimit);
+        return (List<Question>) q.list();//.subList(0, 4);
     }
 
 }

@@ -18,8 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
  *
  * @author Arjun
  */
-
-
 @Service
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class SubjectService {
@@ -41,12 +39,13 @@ public class SubjectService {
     public void deleteSubject(Subject subject) {
         crudfasade.delete(subject);
     }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void addSubject(Subject subject) {
         subjectDao.addSubject(subject);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<Subject> getAll() {
         return subjectDao.getSubjects();
     }
@@ -60,6 +59,18 @@ public class SubjectService {
             System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
         }
         return subjects;
+    }
+
+    public Subject getSubjectByName(String subjectName) {
+        System.out.println("calling service");
+        Subject subject = subjectDao.findByName(subjectName);
+        if (subject != null) {
+            return subject;
+        } else {
+            subject = new Subject(subjectName, subjectName);
+            subjectDao.addSubject(subject);
+            return subject;
+        }
     }
 
 }

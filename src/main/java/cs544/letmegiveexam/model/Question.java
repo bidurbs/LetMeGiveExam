@@ -13,6 +13,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
+import javax.persistence.Transient;
+
 /**
  *
  * @author ahmadreza
@@ -38,6 +40,20 @@ public class Question implements Serializable {
 
     private Subject subject;
 
+    @Transient
+    private long subjectId;
+
+    public long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(long subjectId) {
+        this.subjectId = subjectId;
+    }
+
+    @Transient
+    private String userAnswer;    
+
     @Column(name = "Difficulty_Level")
     private String difficultyLevel;
 
@@ -61,6 +77,19 @@ public class Question implements Serializable {
 
     public Question() {
     }
+
+    public Question(Subject subject, String difficultyLevel, String question, String correctAnswer, String option1, String option2, String option3, String option4) {
+        this.subject = subject;
+        this.difficultyLevel = difficultyLevel;
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
+    }
+    
+    
 
     public String getOption1() {
         return option1;
@@ -135,6 +164,14 @@ public class Question implements Serializable {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+    
+    public String getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
     }
 
 }
