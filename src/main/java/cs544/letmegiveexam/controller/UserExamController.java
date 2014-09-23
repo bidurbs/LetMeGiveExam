@@ -42,6 +42,7 @@ public class UserExamController {
     public String sumbitExam(@Valid QuestionSet questionSet, BindingResult result, HttpSession session, @PathVariable int id) {
 
         if (!result.hasErrors()) {
+
             java.util.Date date = new java.util.Date();
             Timestamp currentTimestamp = new Timestamp(date.getTime());
             User user = (User) session.getAttribute("user");

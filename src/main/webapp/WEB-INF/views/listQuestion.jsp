@@ -18,6 +18,7 @@
         <h1>Question List!</h1>
         <h2>${questionSet.questionslist[0].subject.name}</h2>        
         <form:form commandName="questionSet" action="../populateResult/${questionSet.id}" method="post">
+
             <table>
 
                 <c:if test="${questionSet.questionslist != null}">                                                                     
