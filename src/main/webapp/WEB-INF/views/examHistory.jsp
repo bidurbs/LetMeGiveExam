@@ -13,8 +13,8 @@
         <title>JSP Page</title>
     </head>
     <body>       
-         <%@include file="../template/sideBar.jsp"%>
-          <h3>Exam history :</h3>
+        <%@include file="../template/sideBar.jsp"%>
+        <h3>Exam history :</h3>
         <table border="1" cellpadding="10">
             <tr>
                 <th>Question Set</th>
@@ -26,7 +26,10 @@
             <c:forEach var="userExam" items="${userExamList}">
                 <tr>
                     <td>${userExam.id}</td>
-                    <td>${userExam.questionSet.questionslist.get(0).subject.name}</td>
+                    <td> <c:if test="${userExam.questionSet.questionslist.size() != 0}">   
+                            ${userExam.questionSet.questionslist.get(0).subject.name}
+                        </c:if>
+                    </td>
                     <td>${userExam.startTime}</td>
                     <td>${userExam.duration}</td>
                     <td>${userExam.score}</td>

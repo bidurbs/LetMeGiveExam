@@ -1,7 +1,6 @@
 package cs544.letmegiveexam.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -32,7 +31,7 @@ public class UserExam implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -59,7 +58,7 @@ public class UserExam implements Serializable {
     }
     
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

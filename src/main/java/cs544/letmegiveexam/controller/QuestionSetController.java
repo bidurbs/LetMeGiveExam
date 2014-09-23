@@ -7,10 +7,13 @@ package cs544.letmegiveexam.controller;
 
 import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.QuestionSet;
+import cs544.letmegiveexam.model.User;
+import cs544.letmegiveexam.model.UserExam;
 import cs544.letmegiveexam.service.QuestionService;
 import cs544.letmegiveexam.service.QuestionSetService;
 import cs544.letmegiveexam.service.UserExamService;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -54,28 +57,22 @@ public class QuestionSetController implements Serializable {
         QuestionSet questionSet = questionSetService.get(Id);
 
         //save exam for user
-//        java.util.Date date = new java.util.Date();
-//        Timestamp currentTimestamp = new Timestamp(date.getTime());
-//        //get user object from session
-//        User user = (User) session.getAttribute("user");
-//        UserExam userExam = null;
-//        // List<Question> questionSetQuestions = null;
-//        if (questionSet != null) {
-//            userExam = new UserExam(currentTimestamp, user, questionSet);
-//            userExamService.add(userExam);
-//
-//            //put list of questions in session
-//            // questionSetQuestions = userExam.getQuestionSet().getQuestionslist();
-//        }
-//        for (Question qes : questionSetQuestions) {
-//            System.out.println("Question:" + qes.getSubject());
-//        }
-       // model.addAttribute("questionSetQuestions", userExam.getQuestionSet().getQuestionslist());
-        //session.setAttribute("questionSet", questionSet);
-        model.addAttribute("questionSet", questionSet);
-      //  model.addAttribute("subject", userExam.getQuestionSet().getQuestionslist().get(0).getSubject());
-       // model.addAttribute("userExam", userExam);
-        return "listQuestion";
+        java.util.Date date = new java.util.Date();
+        Timestamp currentTimestamp = new Timestamp(date.getTime());
+        //get user object from session
+        User user = (User) session.getAttribute("user");
+        UserExam userExam = null;
+
+        if (questionSet != null) {
+            userExam = new UserExam(currentTimestamp, user, questionSet);
+            userExamService.add(userExam);
+            model.addAttribute("questionSetQuestions", userExam.getQuestionSet().getQuestionslist());
+            //session.setAttribute("questionSet", questionSet);
+            model.addAttribute("questionSet", questionSet);
+            model.addAttribute("subject", userExam.getQuestionSet().getQuestionslist().get(0).getSubject());
+        }
+        model.addAttribute("userExam", userExam);
+        return "userExam";
     }
 
 }
