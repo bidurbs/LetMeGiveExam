@@ -38,11 +38,10 @@ public class UserExamController {
     @Autowired
     QuestionSetService questionSetService;
 
-    @RequestMapping(value = "/populateResult/{id}", method = RequestMethod.POST)
-    public String sumbitExam(@Valid QuestionSet questionSet, BindingResult result, HttpSession session, @PathVariable int id) {
+    @RequestMapping(value = "/populateResult/{Id}", method = RequestMethod.POST)
+    public String sumbitExam(@Valid UserExam userExam, BindingResult result, @PathVariable long Id) {
 
         if (!result.hasErrors()) {
-
             java.util.Date date = new java.util.Date();
             Timestamp currentTimestamp = new Timestamp(date.getTime());
             User user = (User) session.getAttribute("user");
@@ -59,12 +58,7 @@ public class UserExamController {
 //        if (questionSet != null) {
 //            userExam = new UserExam(currentTimestamp, user, questionSet);
             userExamService.add(userExam);
-//
-//            //put list of questions in session
-//            // questionSetQuestions = userExam.getQuestionSet().getQuestionslist();
-//        }
 
-            //calculate the currect answers
             List<Question> questionList = questionSetDB.getQuestionslist();
             int score = calcualteResult(questionList);
             System.out.println("Score:" + score);
