@@ -10,7 +10,7 @@
         <form:form commandName="subject" action="addSubject" method="post">
             <form:errors path="*" cssClass="errorblock" element="div" />              
                 <table>
-                    <caption>Add Subject</caption>
+                    <caption style="background-color: blueviolet">Add Subject</caption>
                 <tr>
                     <td>Name :</td>
                     <td><form:input type="text" path="name" /> </td>
@@ -25,6 +25,6 @@
             </table>
             <input type="submit"/>
 
-        </form:form>>
+        </form:form>
     </body>
 </html>
