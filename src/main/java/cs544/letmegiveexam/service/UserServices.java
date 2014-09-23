@@ -33,7 +33,9 @@ public class UserServices implements IUserService{
     EmailManager emailManager;
 
     public void updateUser(User user) {
-        crudfasade.update(user);
+       
+       boolean flg= crudfasade.update(user);
+        System.out.println("flag: " + flg);
     }
 
     public User getUserById(Long Id) {
@@ -42,7 +44,6 @@ public class UserServices implements IUserService{
     }
 
     public User getUserByUsername(String username) {
-
         return crudfasade.findByUsername(username);
 
     }

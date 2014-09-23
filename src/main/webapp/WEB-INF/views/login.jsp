@@ -24,15 +24,18 @@
                     <p>${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</p>
                 </c:if></tr>
         <tr>
-            <c:if test="${not empty sessionScope.error}">
-		<c:if test="${'1' eq sessionScope.error}">
-                    Your Account is Locked
+            
+        <c:if test="${not empty param.error}">
+		<c:if test="${'AccountLock' eq param.error}">
+                <p style="color: red">Your Account is Locked</p>
 		</c:if>
-		<c:if test="${'2' eq sessionScope.error}">
-                    Invalid Username or Password.
+		<c:if test="${'InvalidCredentials' eq param.error}">
+                    <p style="color: red"> Invalid Username or Password. </p>
 		</c:if>
-			<c:remove var="error" scope="session"/>
-		</c:if>
+			
+            </c:if>
+            
+            
         </tr>
 
                 <form method="post" action="<c:url value='j_spring_security_check' />">
