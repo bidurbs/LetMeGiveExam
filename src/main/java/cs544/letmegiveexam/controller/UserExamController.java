@@ -32,32 +32,32 @@ public class UserExamController {
     UserExamService userExamService;
 
     @RequestMapping(value = "/populateResult/{Id}", method = RequestMethod.POST)
-    public String sumbitExam(@Valid UserExam userExam, BindingResult result, @PathVariable int Id) {
+    public String sumbitExam(@Valid UserExam userExam, BindingResult result, @PathVariable long Id) {
         if (!result.hasErrors()) {
-            java.util.Date date = new java.util.Date();
-            Timestamp currentTimestamp = new Timestamp(date.getTime());
+            //java.util.Date date = new java.util.Date();
+            //Timestamp currentTimestamp = new Timestamp(date.getTime());
             //calculate the currect answers
             List<Question> questionList = userExam.getQuestionSet().getQuestionslist();
             int score = calcualteResult(questionList);
-             System.out.println("Score:"+score);
+            System.out.println("Score:" + score);
             userExam.setScore(score);
             userExam.setDuration("5");//currentTimestamp,userExam.getStartTime()); // minutes
             userExamService.update(userExam);
         }
         return "redirect:/examHistory";
     }
-    
-    private int calcualteResult(List<Question> questionLIst){
-        int result =0;
-        for(Question question: questionLIst){
-            System.out.println("QuesId:+"+question.getId()+" ,UserAnswer:"+question.getUserAnswer()+" Correct Answer:"+question.getCorrectAnswer());
-            if(question.getUserAnswer().equalsIgnoreCase(question.getCorrectAnswer())){
-                result ++;
+
+    private int calcualteResult(List<Question> questionLIst) {
+        int result = 0;
+        for (Question question : questionLIst) {
+            System.out.println("QuesId:+" + question.getId() + " ,UserAnswer:" + question.getUserAnswer() + " Correct Answer:" + question.getCorrectAnswer());
+            if (question.getUserAnswer().equalsIgnoreCase(question.getCorrectAnswer())) {
+                result++;
             }
         }
         return result;
     }
-    
+
     @RequestMapping(value = "/examHistory", method = RequestMethod.GET)
     public String examHistory(Model model) {
         long userId = 1L;
