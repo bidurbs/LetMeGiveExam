@@ -28,12 +28,12 @@ public class UserExamService {
         userExamDAO.add(userExam);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public UserExam get(long Id) {
         return userExamDAO.get(Id);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void update(UserExam userExam) {
         userExamDAO.update(userExam);
     }
