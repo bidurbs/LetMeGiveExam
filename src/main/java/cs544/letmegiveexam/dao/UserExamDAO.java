@@ -63,8 +63,8 @@ public class UserExamDAO {
         openSession().delete(c);
     }
 
-    public List<UserExam> getUserExam(long userId) {
-        Query q = sessionFactory.getCurrentSession().createQuery("from UserExam ue where ue.user.id=: id");
+    public List<UserExam> getUserExam(int userId) {
+        Query q = sessionFactory.getCurrentSession().createQuery("from UserExam ue where ue.user.id=:id");
         q.setParameter("id", userId);
         return (List<UserExam>) q.list();
     }

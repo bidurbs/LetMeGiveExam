@@ -31,7 +31,7 @@ public class UserExam implements Serializable {
 
     @Id
     @GeneratedValue
-    private int id;
+    private long id;
     
     @Column(nullable = false)
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
@@ -58,7 +58,7 @@ public class UserExam implements Serializable {
     }
     
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -99,7 +99,13 @@ public class UserExam implements Serializable {
     }
 
     public void setQuestionSet(QuestionSet questionSet) {
-        this.questionSet = questionSet;
+       if(questionSet == null)
+        {
+            this.questionSet = new QuestionSet();
+        }
+        else{
+            this.questionSet = questionSet;
+        }
     }
     
     

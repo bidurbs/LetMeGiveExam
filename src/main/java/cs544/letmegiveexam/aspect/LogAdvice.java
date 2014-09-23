@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs544.letmegiveexam.aspect;
 
 
@@ -13,8 +8,8 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 /**
  *
@@ -28,8 +23,14 @@ public class LogAdvice {
     @After("execution (* cs544.letmegiveexam.controller.LoginController.welcome(..))&& args(model,session) ")
     public void logMethodCalls(JoinPoint point, Model model,HttpSession session) {
         User user=(User)session.getAttribute("user");
-        logger.log("username...."+user.getUsername());
-
+        logger.log("at "+new Date()+"the user: "+user.getUsername()+"login on system");
+        System.out.println("at "+new Date()+"the user: "+user.getUsername()+"login on system");
+    }
+    
+    @After("execution (* cs544.letmegiveexam.controller.UserController.addStudent(..))&& args(user,result) ")
+    public void logRegister(JoinPoint point, User user, BindingResult result) {
+        logger.log("at "+new Date()+"the user: "+user.getUsername()+"Register on system");
+        System.out.println("at "+new Date()+"the user: "+user.getUsername()+"Register on system");
     }
    
 

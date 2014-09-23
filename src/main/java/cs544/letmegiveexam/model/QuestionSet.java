@@ -35,7 +35,7 @@ public class QuestionSet implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "question_Id", unique = false)
     )
 
-    private List<Question> questionslist = new ArrayList();
+    private List<Question> questionslist = new ArrayList<Question>();
 
     public QuestionSet() {
     }
@@ -53,7 +53,13 @@ public class QuestionSet implements Serializable {
     }
 
     public void setQuestionslist(List<Question> questionslist) {
-        this.questionslist = questionslist;
+        if(questionslist == null)
+        {
+            this.questionslist = new ArrayList<Question>();
+        }
+        else{
+            this.questionslist = questionslist;
+        }
     }
 
 }
