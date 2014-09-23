@@ -63,6 +63,7 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
     }
     @Override
     public User findByUsername(String username){
+        System.out.println("In Find username facade... ");
         String sql="FROM User u WHERE u.username= :username";
         Query query=sessionFactory.getCurrentSession().createQuery(sql);
         query.setParameter("username", username);

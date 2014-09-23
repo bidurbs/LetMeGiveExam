@@ -6,10 +6,13 @@
 package cs544.letmegiveexam.controller;
 
 import cs544.letmegiveexam.model.Question;
+import cs544.letmegiveexam.model.QuestionSet;
+import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.model.UserExam;
+import cs544.letmegiveexam.service.QuestionSetService;
 import cs544.letmegiveexam.service.UserExamService;
-import java.sql.Timestamp;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -30,19 +33,29 @@ public class UserExamController {
 
     @Autowired
     UserExamService userExamService;
+    @Autowired
+    QuestionSetService questionSetService;
 
-    @RequestMapping(value = "/populateResult/{Id}", method = RequestMethod.POST)
-    public String sumbitExam(@Valid UserExam userExam, BindingResult result, @PathVariable long Id) {
+    @RequestMapping(value = "/populateResult/{Id}/{setId}", method = RequestMethod.POST)
+    public String sumbitExam(@Valid QuestionSet questionSet, BindingResult result, HttpSession session, @PathVariable long Id, @PathVariable long setId) {
+        UserExam userExam = userExamService.get(Id);
         if (!result.hasErrors()) {
-            //java.util.Date date = new java.util.Date();
-            //Timestamp currentTimestamp = new Timestamp(date.getTime());
-            //calculate the currect answers
-            List<Question> questionList = userExam.getQuestionSet().getQuestionslist();
+            
+            QuestionSet questionSetDB = questionSetService.get(setId);
+            List<Question> questionList = questionSetDB.getQuestionslist();
+            for (int i = 0; i < questionList.size(); i++) {
+                Question que = questionList.get(i);
+                que.setUserAnswer(questionSet.getQuestionslist().get(i).getUserAnswer());
+            }
+            
             int score = calcualteResult(questionList);
             System.out.println("Score:" + score);
             userExam.setScore(score);
-            userExam.setDuration("5");//currentTimestamp,userExam.getStartTime()); // minutes
+            
+            userExam.setDuration("5");
             userExamService.update(userExam);
+        } else {
+            System.out.println("i m here" + result.getFieldError());
         }
         return "redirect:/examHistory";
     }
@@ -59,9 +72,11 @@ public class UserExamController {
     }
 
     @RequestMapping(value = "/examHistory", method = RequestMethod.GET)
-    public String examHistory(Model model) {
-        long userId = 1L;
-        List<UserExam> userExamList = userExamService.getUserExam(userId);
+    public String examHistory(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        
+        List<UserExam> userExamList = userExamService.getUserExam(user.getId());
+        //System.out.println("userExamList size:" + (userExamList != null ? userExamList.size() : "Null"));
         model.addAttribute("userExamList", userExamList);
         return "examHistory";
     }

@@ -24,7 +24,7 @@
             <ul> 
                 <sec:authorize access="hasRole('ROLE_USER')" >
                         <li><a href="generateQuestionSet/1" >Start Exam</a></li>
-                        <li><a href="viewHistory" >View History</a></li>
+                        <li><a href="examHistory" >View History</a></li>
                         <li><a href="viewProfile" >View Profile</a></li>
                 </sec:authorize>
                 

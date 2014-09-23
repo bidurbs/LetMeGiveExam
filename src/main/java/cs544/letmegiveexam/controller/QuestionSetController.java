@@ -62,22 +62,17 @@ public class QuestionSetController implements Serializable {
         //get user object from session
         User user = (User) session.getAttribute("user");
         UserExam userExam = null;
-        List<Question> questionSetQuestions = null;
+
         if (questionSet != null) {
             userExam = new UserExam(currentTimestamp, user, questionSet);
             userExamService.add(userExam);
-
-            //put list of questions in session
-            questionSetQuestions = questionSet.getQuestionslist();
+            model.addAttribute("questionSetQuestions", userExam.getQuestionSet().getQuestionslist());
+            //session.setAttribute("questionSet", questionSet);
+            model.addAttribute("questionSet", questionSet);
+            model.addAttribute("subject", userExam.getQuestionSet().getQuestionslist().get(0).getSubject());
         }
-        for (Question qes : questionSetQuestions) {
-            System.out.println("Question:" + qes.getSubject());
-        }
-        model.addAttribute("questionSetQuestions", questionSetQuestions);
-        model.addAttribute("questionSet", questionSet);
-        model.addAttribute("subject", questionSetQuestions.get(0).getSubject());
         model.addAttribute("userExam", userExam);
-        return "listQuestion";
+        return "userExam";
     }
 
 }
