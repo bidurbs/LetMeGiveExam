@@ -20,7 +20,7 @@
                 <th>Question Set</th>
                 <th>Subject</th>
                 <th>Exam Date</th>
-                <th>Duration</th>
+                <th>Duration (Min)</th>
                 <th>Score</th>
             </tr>
             <c:forEach var="userExam" items="${userExamList}">
