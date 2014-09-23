@@ -51,6 +51,12 @@ public class QuestionService {
         return questionDAO.getAll();
     }
     
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void addQuestion(Question question) {
+        questionDAO.add(question);
+    }
+     
+    
     @Transactional
     public List<Question> getQuestionsByQuestionId(long Id) {
         System.out.println("**********1**********");
