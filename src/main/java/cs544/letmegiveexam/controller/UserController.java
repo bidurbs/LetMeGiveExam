@@ -11,8 +11,10 @@ package cs544.letmegiveexam.controller;
 import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.service.UserServices;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,21 +34,20 @@ public class UserController {
        model.addAttribute("user", new User());
       return "register";
    }
-   
-   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-   public String addStudent(User user) {
-       user.setEnabled(true);
-       user.setLockCount(0);
-       user.setLockTime(new java.util.Date());
-       user.setRole_id(1);
-       
-       
-        userServices.createUser(user);
-          
-       
-        System.out.println(user.getFirstName() + " " + user.getLastName());
-      return "registerSuccess";
-   }
+       @RequestMapping(value = "/addUser", method = RequestMethod.POST)
+    public String addStudent(@Valid User user, BindingResult result) {
+        if (result.hasErrors()) {
+            return "register";
+        } else {
+            user.setEnabled(true);
+            user.setLockCount(0);
+            user.setLockTime(new java.util.Date());
+            user.setRole_id(1);
+            userServices.createUser(user);
+            System.out.println(user.getFirstName() + " " + user.getLastName());
+            return "registerSuccess";
+        }
+    }
 
     public void setUserServices(UserServices userServices) {
         this.userServices = userServices;

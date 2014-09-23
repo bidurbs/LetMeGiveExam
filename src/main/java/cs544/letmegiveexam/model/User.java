@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cs544.letmegiveexam.model;
 
 import java.io.Serializable;
@@ -20,6 +15,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 /**
@@ -54,16 +52,20 @@ public class User implements Serializable {
 
     @Column(nullable = false, name = "Email")
     @NotBlank
+    @Email
     private String email;
 
     @Column(nullable = false, name = "FirstName")
+    @NotBlank
     private String firstName;
 
     @Column(nullable = false, name = "LastName")
+    @NotBlank
     private String lastName;
-
+    @NotBlank
     private String username;
-
+    @NotBlank
+    @Pattern(regexp="^[a-zA-Z]\\w{3,14}$",message = "The password's first character must be a letter, it must contain at least 4 characters and no more than 15 characters and no characters other than letters, numbers and the underscore may be used")
     private String password;
 
     private int lockCount;
