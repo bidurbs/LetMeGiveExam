@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cs544.letmegiveexam.service;
 
-import cs544.letmegiveexam.crudfacade.CRUDEntityFacade;
+import cs544.letmegiveexam.dao.UserExamDAO;
 import cs544.letmegiveexam.model.UserExam;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -17,24 +18,28 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Arjun
  */
 @Service
-@Transactional
 public class UserExamService {
+
     @Autowired
-    private CRUDEntityFacade crudfasade;
+    UserExamDAO userExamDAO;
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void add(UserExam userExam) {
+        userExamDAO.add(userExam);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public UserExam get(long Id) {
+        return userExamDAO.get(Id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void update(UserExam userExam) {
+        userExamDAO.update(userExam);
+    }
     
-    public void updateUserExam(UserExam userExam) {
-        crudfasade.update(userExam);
-    }
- 
-    public UserExam getUserExamById(Long Id) {
-        return (UserExam) crudfasade.read(Id, UserExam.class);
-    }
-
-    public void deleteUserExam(UserExam userExam) {
-        crudfasade.delete(userExam);        
-    }
-
-	public void saveUserExam(UserExam userExam) {
-        crudfasade.save(userExam);
+    @Transactional(propagation = Propagation.REQUIRED)
+    public List<UserExam> getUserExam(long userId) {
+        return userExamDAO.getUserExam(userId);
     }
 }

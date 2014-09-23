@@ -25,7 +25,7 @@ public class ImportData {
     public static void main(String[] args) {
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:8889/cs544db","root","root");
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://54.165.220.203:3306/cs544db","bidur","bidurbk");
             con.setAutoCommit(false);
             PreparedStatement pstm = null ;
             
@@ -43,10 +43,16 @@ public class ImportData {
             Row row;
             for(int i=1; i<=sheet.getLastRowNum(); i++){
                 row = sheet.getRow(i);
-                int id = (int) row.getCell(0).getNumericCellValue();
-                String name = row.getCell(1).getStringCellValue();
-                String address = row.getCell(2).getStringCellValue();
-                String sql = "INSERT INTO User VALUES('"+id+"','"+name+"','"+address+"')";
+                //int id = (int) row.getCell(1).getNumericCellValue();
+                String question = row.getCell(1).getStringCellValue();
+                String option1 = row.getCell(2).getStringCellValue();
+                String option2 = row.getCell(3).getStringCellValue();
+                String option3 = row.getCell(4).getStringCellValue();
+                String option4 = row.getCell(5).getStringCellValue();
+                String correctAnswer = row.getCell(6).getStringCellValue();
+                Long subjet_Id =new Double(row.getCell(7).getNumericCellValue()).longValue();
+//                String sql = "INSERT INTO User VALUES('"+id+"','"+name+"','"+address+"')";
+                String sql = "INSERT INTO Question(question,) VALUES('"+question+"','"+option1+"','"+option2+"','"+option3+"','"+option4+"','"+correctAnswer+"','"+subjet_Id+"')";
                 System.out.println(sql); 
                 pstm = (PreparedStatement) con.prepareStatement(sql);
                 pstm.execute();

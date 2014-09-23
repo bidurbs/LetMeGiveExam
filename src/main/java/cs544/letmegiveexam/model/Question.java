@@ -1,6 +1,7 @@
 package cs544.letmegiveexam.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,7 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
+
 import javax.persistence.Transient;
 
 /**
@@ -34,11 +35,11 @@ public class Question implements Serializable {
     @Id
     @GeneratedValue
     private long id;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "subject_id", nullable = false)
 
     private Subject subject;
-    
+
     @Transient
     private long subjectId;
 
@@ -49,6 +50,8 @@ public class Question implements Serializable {
     public void setSubjectId(long subjectId) {
         this.subjectId = subjectId;
     }
+
+    private String userAnswer;
 
     @Column(name = "Difficulty_Level")
     private String difficultyLevel;
@@ -147,6 +150,14 @@ public class Question implements Serializable {
 
     public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
+    }
+
+    public String getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
     }
 
 }

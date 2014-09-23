@@ -1,3 +1,4 @@
+
 package cs544.letmegiveexam.crudfacade;
 
 import cs544.letmegiveexam.model.User;
@@ -10,7 +11,6 @@ import javax.persistence.TransactionRequiredException;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -28,19 +28,7 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
 
     private boolean operationSuccessful;
 
-    public void setEntityClass(Class entityClass) {
-        this.entityClass = entityClass;
-    }
-
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-    public void setOperationSuccessful(boolean operationSuccessful) {
-        this.operationSuccessful = operationSuccessful;
-    }
-
-      
+    
     /**
      *
      * @param entity
@@ -73,7 +61,16 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
         return entity;
         
     }
-
+    @Override
+    public User findByUsername(String username){
+        String sql="FROM User u WHERE u.username= :username";
+        Query query=sessionFactory.getCurrentSession().createQuery(sql);
+        query.setParameter("username", username);
+        
+       List<User> user=query.list();
+        
+        return user.get(0);
+    }
     /**
      *
      * @param primaryKey
@@ -86,6 +83,7 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
             IllegalArgumentException {
         return (T) sessionFactory.getCurrentSession().get(c, primaryKey);
     }
+    
 
     /**
      *
@@ -135,7 +133,7 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
      * @param queryName
      * @return
      */
-    @Override
+    @Override   
     public List findWithNamedQuery(String queryName) {
         return sessionFactory.getCurrentSession().getNamedQuery(queryName).list();
     }
@@ -208,9 +206,23 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
     public List findWithNamedQuery(String namedQueryName, Map<String, String> parameters, Map<String, Long> parameters2) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
     @Override
     public List getAll(T entity) {
         return sessionFactory.getCurrentSession().createCriteria(entity.getClass()).list();
     }
+    
+    public void setEntityClass(Class entityClass) {
+        this.entityClass = entityClass;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public void setOperationSuccessful(boolean operationSuccessful) {
+        this.operationSuccessful = operationSuccessful;
+    }
+
+      
 }

@@ -23,7 +23,7 @@ public class QuestionSetService {
     @Autowired
     QuestionSetDAO questionSetDAO;
     
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<QuestionSet> getAll() {
         return questionSetDAO.getAll();
     }
@@ -33,7 +33,7 @@ public class QuestionSetService {
         return questionSetDAO.add(questionSet);
     }
     
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public QuestionSet get(long Id) {
         return questionSetDAO.get(Id);
     }

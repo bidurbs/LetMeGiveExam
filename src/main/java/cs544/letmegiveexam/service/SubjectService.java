@@ -46,7 +46,7 @@ public class SubjectService {
         subjectDao.addSubject(subject);
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<Subject> getAll() {
         return subjectDao.getSubjects();
     }

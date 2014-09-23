@@ -5,13 +5,24 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+        <title>Choose Subject</title>
+    </head>    
+    <body> <html:form action="/inputAction" > 
+            <table>
+                <tr> <td> Select Subject : </td> 
+                    <td> <html:select property="subject" > 
+                            <html:option value="0">Select Subject</html:option> 
+                            <html:optionsCollection name="InputForm" property="subjects"label="subjectName" value="subjectId" />
+                        </html:select>
+                    </td>
+                </tr>
+                <tr> <td colspan="2" align="center"> <html:submit property="method" value="Take Exam" /> </td> </tr>
+            </table> </html:form> </body>
 </html>
+
+
