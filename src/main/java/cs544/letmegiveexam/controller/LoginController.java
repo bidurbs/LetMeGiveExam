@@ -5,7 +5,6 @@
  */
 package cs544.letmegiveexam.controller;
 
-
 import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.service.UserServices;
 import javax.servlet.http.HttpSession;
@@ -30,30 +29,24 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class LoginController {
 
+    @Autowired
+    SubjectService subjectService;
 
-         @Autowired
-         SubjectService subjectService;
-         
-         private UserServices userServices;
-        
-         
-       
-
-
-   
+    private UserServices userServices;
     
+
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome(Model model, HttpSession session) {
         System.out.println("Subject List");
-         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-            String name = auth.getName();
-            System.out.println(name);
-           
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        System.out.println(name);
+
 //            HttpSession session=(HttpSession) sessionFactory.getCurrentSession();
-           if(session.getAttribute("user")==null){
-               User user= userServices.getUserByUsername(name);
-               session.setAttribute("user", user);
-           }
+        if (session.getAttribute("user") == null) {
+            User user = userServices.getUserByUsername(name);
+            session.setAttribute("user", user);
+        }
         //ModelAndView model = new ModelAndView();
         List<Subject> subjects = subjectService.getAllSubjects();
         System.out.println("Subject List:" + subjects.size());
@@ -61,20 +54,15 @@ public class LoginController {
             System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
 
         }
-         model.addAttribute("subjects", subjects);
+        model.addAttribute("subjects", subjects);
         return "welcome";
     }
 
-        
-        @RequestMapping(value="/login", method=RequestMethod.GET)
-        public String index(){
-            return "login";
-        }
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String index() {
+        return "login";
+    }
 
-    
-    
-        
-        
 //        @ExceptionHandler(value=NoSuchResourceException.class)
 //	public ModelAndView handle(Exception e) {
 //		ModelAndView mv = new ModelAndView();
@@ -82,24 +70,21 @@ public class LoginController {
 //		mv.setViewName("noSuchResource");
 //		return mv;
 //	}
-        @RequestMapping(value="/loginfailed", method=RequestMethod.GET)
-	public String loginfailed(Model model) {
-		
-		return "loginfailed";
-	}
+    @RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
+    public String loginfailed(Model model) {
+
+        return "loginfailed";
+    }
 
     public void setUserServices(UserServices userServices) {
         this.userServices = userServices;
     }
-    @RequestMapping(value="/logout", method=RequestMethod.GET)
-	public String logout(Model model, HttpSession session) {
-		session.invalidate();
-		return "index";
-	}
-    
-        
 
-       
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(Model model, HttpSession session) {
+        session.invalidate();
+        return "index";
+    }
 
     @RequestMapping(value = "/subjects", method = RequestMethod.GET)
     public ModelAndView getSubjects() {
@@ -113,11 +98,5 @@ public class LoginController {
         model.addObject(subjects);
         return model;
     }
-
-   
-
-
-    
-  
 
 }

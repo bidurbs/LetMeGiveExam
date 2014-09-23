@@ -11,6 +11,8 @@ import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.model.UserExam;
 import cs544.letmegiveexam.service.QuestionSetService;
 import cs544.letmegiveexam.service.UserExamService;
+import cs544.letmegiveexam.util.ExamDuration;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -40,19 +42,22 @@ public class UserExamController {
     public String sumbitExam(@Valid QuestionSet questionSet, BindingResult result, HttpSession session, @PathVariable long Id, @PathVariable long setId) {
         UserExam userExam = userExamService.get(Id);
         if (!result.hasErrors()) {
-            
+
             QuestionSet questionSetDB = questionSetService.get(setId);
             List<Question> questionList = questionSetDB.getQuestionslist();
             for (int i = 0; i < questionList.size(); i++) {
                 Question que = questionList.get(i);
                 que.setUserAnswer(questionSet.getQuestionslist().get(i).getUserAnswer());
             }
-            
+
             int score = calcualteResult(questionList);
             System.out.println("Score:" + score);
             userExam.setScore(score);
             
-            userExam.setDuration("5");
+            //calculate the duration of exam
+            //Timestamp ts_now = new Timestamp(());
+            long durat = (Long) ExamDuration.get(userExam.getStartTime());
+            userExam.setDuration(Long.toString(durat));
             userExamService.update(userExam);
         } else {
             System.out.println("i m here" + result.getFieldError());
@@ -74,7 +79,7 @@ public class UserExamController {
     @RequestMapping(value = "/examHistory", method = RequestMethod.GET)
     public String examHistory(Model model, HttpSession session) {
         User user = (User) session.getAttribute("user");
-        
+
         List<UserExam> userExamList = userExamService.getUserExam(user.getId());
         //System.out.println("userExamList size:" + (userExamList != null ? userExamList.size() : "Null"));
         model.addAttribute("userExamList", userExamList);
