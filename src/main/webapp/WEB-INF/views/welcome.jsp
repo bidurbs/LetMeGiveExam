@@ -25,7 +25,7 @@
              <%--<%@include file="login.jsp" %>--%>
             </fieldset> 
              
-        
+        <sec:authorize access="hasRole('ROLE_USER')" >
         <a href="<%=request.getContextPath()%>/j_spring_security_logout">logout</a>-->
         <div id="featureWrap">
             
@@ -88,6 +88,7 @@
                     </div>
             </div>
     </div> <!-- /featureWrap -->
+        </sec:authorize>
 <!--    <a href="${pageContext.request.contextPath}/questionSet/1"> Start Exam</a>-->
 </body>
 </html>
