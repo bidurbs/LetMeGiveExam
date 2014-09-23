@@ -22,25 +22,28 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class QuestionService {
-    
+
     @Autowired
     private EntityFacade crudfasade;
-    
+
     @Autowired
     QuestionDAO questionDAO;
-    
+
     @Transactional(propagation = Propagation.REQUIRED)
     public void updateQuestion(Question question) {
         crudfasade.update(question);
     }
+
     @Transactional(propagation = Propagation.REQUIRED)
     public Question getQuestionById(Long Id) {
         return (Question) crudfasade.read(Id, Question.class);
     }
+
     @Transactional(propagation = Propagation.REQUIRED)
     public void deleteQuestion(Question question) {
         crudfasade.delete(question);
     }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void saveQuestion(Question question) {
         crudfasade.save(question);
@@ -50,10 +53,32 @@ public class QuestionService {
     public List<Question> getAll() {
         return questionDAO.getAll();
     }
-    
+
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void addQuestion(Question question) {
+        questionDAO.add(question);
+    }
+
+    @Transactional
+    public List<Question> getQuestionsByQuestionId(long Id) {
+        System.out.println("**********1**********");
+        try {
+            Map<String, Long> paramaters = new HashMap<>(1);
+            //paramaters.put("questionId", Id);
+            int resultLimit = 10;
+            System.out.println("**********2**********");
+            List<Question> qans = crudfasade.findWithNamedQuery("Question.findAll"); //, paramaters, resultLimit
+            return qans; //return only 10 question
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            return null;
+        }
+    }
+
     @Transactional(propagation = Propagation.REQUIRED)
     public List<Question> getRandomQuestionsBySubjectId(long Id, int questionLimit) {
         return questionDAO.getAllBySubjectId(Id, questionLimit);
+
     }
 
 }

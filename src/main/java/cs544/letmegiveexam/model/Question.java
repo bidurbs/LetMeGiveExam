@@ -12,6 +12,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
+
 import javax.persistence.Transient;
 
 /**
@@ -38,7 +39,18 @@ public class Question implements Serializable {
     @JoinColumn(name = "subject_id", nullable = false)
 
     private Subject subject;
-    
+
+    @Transient
+    private long subjectId;
+
+    public long getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(long subjectId) {
+        this.subjectId = subjectId;
+    }
+
     @Transient
     private String userAnswer;    
 
