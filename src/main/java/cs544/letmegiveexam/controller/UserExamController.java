@@ -35,12 +35,12 @@ public class UserExamController {
 
     @Autowired
     UserExamService userExamService;
-
     @Autowired
     QuestionSetService questionSetService;
 
     @RequestMapping(value = "/populateResult/{id}", method = RequestMethod.POST)
     public String sumbitExam(@Valid QuestionSet questionSet, BindingResult result, HttpSession session, @PathVariable int id) {
+
         if (!result.hasErrors()) {
             java.util.Date date = new java.util.Date();
             Timestamp currentTimestamp = new Timestamp(date.getTime());
@@ -62,6 +62,7 @@ public class UserExamController {
 //            //put list of questions in session
 //            // questionSetQuestions = userExam.getQuestionSet().getQuestionslist();
 //        }
+
             //calculate the currect answers
             List<Question> questionList = questionSetDB.getQuestionslist();
             int score = calcualteResult(questionList);
@@ -77,7 +78,7 @@ public class UserExamController {
         int result = 0;
         for (Question question : questionLIst) {
             System.out.println("QuesId:+" + question.getId() + " ,UserAnswer:" + question.getUserAnswer() + " Correct Answer:" + question.getCorrectAnswer());
-            if (question.getCorrectAnswer().equalsIgnoreCase(question.getUserAnswer())) {
+            if (question.getUserAnswer().equalsIgnoreCase(question.getCorrectAnswer())) {
                 result++;
             }
         }

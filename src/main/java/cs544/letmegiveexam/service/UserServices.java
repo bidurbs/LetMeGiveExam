@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class UserServices {
+public class UserServices implements IUserService{
 
     @Autowired
     private CRUDEntityFacade crudfasade;
@@ -54,18 +54,18 @@ public class UserServices {
     public void saveQuestion(User user) {
         crudfasade.save(user);
     }
-
+    @Override
     public void createUser(User user) {
         User u = (User) crudfasade.create(user);
         System.out.println("generated user Id " + u.getId());
         
            
         crudfasade.createAuthority(u);
-        String subject = "Congratulations, You are successfully enrolled in LetMeGiveExam. ";
-        subject = subject + "\n Here are your Username And password";
-        subject = subject + "\n Username: " + u.getUsername() + " , Password : " + u.getPassword();
-        emailManager.sendEmail(mailSender, "Registered to LetMeGiveExam", subject, u.getEmail());
-       
+//        String subject = "Congratulations, You are successfully enrolled in LetMeGiveExam. ";
+//        subject = subject + "\n Here are your Username And password";
+//        subject = subject + "\n Username: " + u.getUsername() + " , Password : " + u.getPassword();
+//        emailManager.sendEmail(mailSender, "Registered to LetMeGiveExam", subject, u.getEmail());
+//       
               
          System.out.println(u.getUsername());
     }

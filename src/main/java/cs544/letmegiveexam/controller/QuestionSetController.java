@@ -7,20 +7,16 @@ package cs544.letmegiveexam.controller;
 
 import cs544.letmegiveexam.model.Question;
 import cs544.letmegiveexam.model.QuestionSet;
-import cs544.letmegiveexam.model.User;
-import cs544.letmegiveexam.model.UserExam;
 import cs544.letmegiveexam.service.QuestionService;
 import cs544.letmegiveexam.service.QuestionSetService;
 import cs544.letmegiveexam.service.UserExamService;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,12 +40,10 @@ public class QuestionSetController implements Serializable {
 
     @RequestMapping(value = "/generateQuestionSet/{Id}", method = RequestMethod.GET)
     public String createQuestionSet(HttpServletRequest request, @PathVariable long Id) {
+        //Admin define value
+        int questionLimit = 1;
+        List<Question> questionList = questionService.getRandomQuestionsBySubjectId(Id, questionLimit); //TODO
 
-        List<Question> questionList = questionService.getAll(); //TODO
-
-        for (Question q : questionList) {
-            System.out.println(q.getQuestion() + " options: " + q.getOption1() + q.getOption2() + q.getOption3() + q.getOption4());
-        }
         QuestionSet questionSet = new QuestionSet(questionList);
         long questionSetId = questionSetService.add(questionSet);
         return "redirect:/questionSet/" + questionSetId;
