@@ -48,13 +48,6 @@ public class UserExam implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private QuestionSet questionSet;
 
-    public UserExam(Date startTime, String duration, int score, User user) {
-        this.startTime = startTime;
-        this.duration = duration;
-        this.score = score;
-        this.user = user;
-    }
-
     public UserExam() {
     }
 

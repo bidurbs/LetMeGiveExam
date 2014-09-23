@@ -26,7 +26,7 @@
                     <td>${userExam.id}</td>
                     <td>${userExam.questionSet.questionslist.get(0).subject}</td>
                     <td>${userExam.startTime}</td>
-                    <td>${userExam.durateion}</td>
+                    <td>${userExam.duration}</td>
                     <td>${userExam.score}</td>
                 </tr>
             </c:forEach>

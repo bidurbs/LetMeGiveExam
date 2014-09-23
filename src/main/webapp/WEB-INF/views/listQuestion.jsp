@@ -17,7 +17,7 @@
     <body>
         <h1>Question List!</h1>
         <h2>${subject.name}</h2>
-        <form:form commandName="userExam" action="../populateResult" method="post">
+        <form:form commandName="userExam" action="../populateResult/${userExam.id}" method="post">
             <table>
                 
                 <c:if test="${questionSetQuestions != null}">                                                                     

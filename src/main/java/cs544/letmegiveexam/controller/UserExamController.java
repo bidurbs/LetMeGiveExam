@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -30,11 +31,11 @@ public class UserExamController {
     @Autowired
     UserExamService userExamService;
 
-    @RequestMapping(value = "/populateResult", method = RequestMethod.POST)
-    public String sumbitExam(@Valid UserExam userExam, BindingResult result) {
+    @RequestMapping(value = "/populateResult/{Id}", method = RequestMethod.POST)
+    public String sumbitExam(@Valid UserExam userExam, BindingResult result, @PathVariable int Id) {
         if (!result.hasErrors()) {
             java.util.Date date = new java.util.Date();
-        Timestamp currentTimestamp = new Timestamp(date.getTime());
+            Timestamp currentTimestamp = new Timestamp(date.getTime());
             //calculate the currect answers
             List<Question> questionList = userExam.getQuestionSet().getQuestionslist();
             int score = calcualteResult(questionList);

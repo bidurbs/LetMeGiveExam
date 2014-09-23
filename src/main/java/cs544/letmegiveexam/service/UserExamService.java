@@ -38,7 +38,7 @@ public class UserExamService {
         userExamDAO.update(userExam);
     }
     
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<UserExam> getUserExam(long userId) {
         return userExamDAO.getUserExam(userId);
     }
