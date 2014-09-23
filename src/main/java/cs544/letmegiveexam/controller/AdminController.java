@@ -37,8 +37,14 @@ public class AdminController {
             return "addSubject";
         } else {
             subjectService.addSubject(subject);
-            return "redirect:/adminSubjects";
+            return "redirect:/questionSetting";
         }
+    }
+    
+     @RequestMapping(value = "addQuestion", method = RequestMethod.GET)
+    public String addQuestion(Model model) {
+        model.addAttribute("queston", new Question());
+        return "addQuestion";
     }
 
     @RequestMapping(value = "addSubject", method = RequestMethod.GET)

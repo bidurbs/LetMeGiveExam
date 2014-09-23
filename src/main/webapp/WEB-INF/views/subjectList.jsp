@@ -9,8 +9,8 @@
         <title>Subjects</title>
     </head>
     <body>
-        <h1>Subject List</h1>
         <table>
+            <caption style="background-color: blueviolet">Available subjects</caption>
             <c:forEach var="subject" items="${subjects}">
                 <tr>
                     <td>${subject.id}</td>
