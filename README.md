@@ -14,6 +14,7 @@ Key Features:
 
 Technologies:
 - Spring & Hibernate
+- Spring MVC
 - Spring Security and validation
 - AOP (Separation of concern)
 - Logger
