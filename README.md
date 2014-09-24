@@ -31,5 +31,5 @@ Members:
 - Bidur BK
 - Nirali Bheda
 - Arjun B Panday
-- Devika Doli
+- Devika Modem
 - AhmadReza Tabibi
