@@ -11,19 +11,36 @@ import org.apache.poi.ss.usermodel.Row;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
+import cs544.letmegiveexam.model.Subject;
+import cs544.letmegiveexam.service.SubjectService;
 import java.io.InputStream;
 import java.sql.ResultSet;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class ImportData {
+
+    @Autowired
+    SubjectService subjectService;
 
     public InputStream readFile(String filename) {
         return getClass().getResourceAsStream(filename);
     }
 
+    public long getSubjectId(String subjectName) {
+        Subject subject = (Subject) subjectService.getSubjectByName(subjectName);
+
+        System.out.println("subject: " + subject.getName());
+        return subject.getId();
+    }
+
     public static void main(String[] args) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:8889/cs544db", "root", "root");
+            //Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:8889/cs544db", "root", "root");
+            Connection con = (Connection) DriverManager.getConnection("jdbc:mysql://54.165.220.203:3306/cs544db", "bidur", "bidurbk");
+
             con.setAutoCommit(false);
             PreparedStatement pstm = null;
 
@@ -37,7 +54,10 @@ public class ImportData {
             HSSFSheet sheet = wb.getSheetAt(0);
 
             String subjectName = sheet.getSheetName();
-
+            System.out.println(subjectName);
+            long subjectId =2;
+            //long subjectId = fn.getSubjectId(subjectName);
+            //System.out.println("Subject Id" +subjectId);
             Row row;
             for (int i = 1; i <= sheet.getLastRowNum(); i++) {
                 row = sheet.getRow(i);
@@ -50,19 +70,19 @@ public class ImportData {
                 String correctAnswer = row.getCell(6).getStringCellValue();
                 Long subjet_Id = new Double(row.getCell(7).getNumericCellValue()).longValue();
 //                String sql = "INSERT INTO User VALUES('"+id+"','"+name+"','"+address+"')";
-                String sql = "INSERT INTO Question(CorrectAnswer, Difficulty_Level, Question, subject_id) VALUES('" + correctAnswer + "','1','" + question + "','"+subjet_Id+"')";
+                String sql = "INSERT INTO Question(CorrectAnswer, Difficulty_Level, Question, subject_id) VALUES('" + correctAnswer + "','1','" + question + "','" + subjet_Id + "')";
                 System.out.println(sql);
                 String key[] = {"id"};
                 pstm = (PreparedStatement) con.prepareStatement(sql, key);
                 pstm.executeUpdate();
                 ResultSet rs = pstm.getGeneratedKeys();
-                int newId=0;
+                int newId = 0;
                 if (rs.next()) {
                     newId = rs.getInt(1);
-                    
+
                 }
                 System.out.println(newId);
-                String sql2 = "INSERT INTO Answers(option1, option2, option3, option4, id) VALUES('" + option1 + "','"+option2+"','" + option3 + "','"+option4+"','"+newId+"')";
+                String sql2 = "INSERT INTO Answers(option1, option2, option3, option4, id) VALUES('" + option1 + "','" + option2 + "','" + option3 + "','" + option4 + "','" + newId + "')";
                 System.out.println(sql2);
                 pstm = (PreparedStatement) con.prepareStatement(sql2);
                 pstm.executeUpdate();
@@ -72,7 +92,7 @@ public class ImportData {
             pstm.close();
             con.close();
             //fn.close();
-            System.out.println("Success import excel to mysql table");
+            System.out.println("Success import excel to mysql table for subject:" + subjectName + subjectId);
         } catch (ClassNotFoundException e) {
             System.out.println(e);
         } catch (SQLException ex) {

@@ -79,7 +79,7 @@ public class User implements Serializable {
     @ManyToOne
     private Role userRole;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserExam> userExamList = new ArrayList<UserExam>();
 
     public boolean isEnabled() {

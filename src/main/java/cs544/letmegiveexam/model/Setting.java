@@ -6,22 +6,16 @@
 
 package cs544.letmegiveexam.model;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  *
  * @author Arjun
  */
 @Entity
-public class Setting {
+public class Setting implements Serializable {
     @Id    
     private long id;
     private int duration;

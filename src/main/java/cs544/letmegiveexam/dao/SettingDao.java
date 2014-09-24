@@ -7,10 +7,6 @@
 package cs544.letmegiveexam.dao;
 
 import cs544.letmegiveexam.model.Setting;
-import cs544.letmegiveexam.model.Subject;
-import cs544.letmegiveexam.model.UserExam;
-import java.util.List;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
