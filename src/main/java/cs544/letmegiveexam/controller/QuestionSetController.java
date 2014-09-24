@@ -11,6 +11,7 @@ import cs544.letmegiveexam.model.User;
 import cs544.letmegiveexam.model.UserExam;
 import cs544.letmegiveexam.service.QuestionService;
 import cs544.letmegiveexam.service.QuestionSetService;
+import cs544.letmegiveexam.service.SettingService;
 import cs544.letmegiveexam.service.UserExamService;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -41,15 +42,21 @@ public class QuestionSetController implements Serializable {
     @Autowired
     UserExamService userExamService;
 
+    @Autowired
+    SettingService settingService;
+
     @RequestMapping(value = "/generateQuestionSet/{Id}", method = RequestMethod.GET)
     public String createQuestionSet(HttpServletRequest request, @PathVariable long Id) {
         //Admin define value
-        int questionLimit = 1;
+        int questionLimit = (settingService.getSetting() != null) ? settingService.getSetting().getNoOfQuestions() : 5;
         List<Question> questionList = questionService.getRandomQuestionsBySubjectId(Id, questionLimit); //TODO
-
-        QuestionSet questionSet = new QuestionSet(questionList);
-        long questionSetId = questionSetService.add(questionSet);
-        return "redirect:/questionSet/" + questionSetId;
+        if (questionList.size() > questionLimit) {
+            QuestionSet questionSet = new QuestionSet(questionList);
+            long questionSetId = questionSetService.add(questionSet);
+            return "redirect:/questionSet/" + questionSetId;
+        } else {
+            return "redirect:/welcome?msg=no sufficient questions for this subject.choose other subject";
+        }
     }
 
     @RequestMapping(value = "/questionSet/{Id}", method = RequestMethod.GET)

@@ -7,7 +7,6 @@
 package cs544.letmegiveexam.service;
 
 import cs544.letmegiveexam.dao.SettingDao;
-import cs544.letmegiveexam.model.Role;
 import cs544.letmegiveexam.model.Setting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +23,12 @@ public class SettingService {
     @Autowired
     SettingDao settingDao;
     
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public void updateSetting(Setting setting) {
         settingDao.update(setting);
     }
  
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRED)
     public Setting getSetting() {
         long Id=1;
         return (Setting) settingDao.get(Id);
