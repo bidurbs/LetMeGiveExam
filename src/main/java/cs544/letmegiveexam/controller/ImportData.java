@@ -55,7 +55,7 @@ public class ImportData {
 
             String subjectName = sheet.getSheetName();
             System.out.println(subjectName);
-            long subjectId =2;
+            long subjectId =1;
             //long subjectId = fn.getSubjectId(subjectName);
             //System.out.println("Subject Id" +subjectId);
             Row row;

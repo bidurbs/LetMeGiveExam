@@ -50,7 +50,7 @@ public class QuestionSetController implements Serializable {
         //Admin define value
         int questionLimit = (settingService.getSetting() != null) ? settingService.getSetting().getNoOfQuestions() : 5;
         List<Question> questionList = questionService.getRandomQuestionsBySubjectId(Id, questionLimit); //TODO
-        if (questionList.size() > questionLimit) {
+        if (questionList.size() >0) {
             QuestionSet questionSet = new QuestionSet(questionList);
             long questionSetId = questionSetService.add(questionSet);
             return "redirect:/questionSet/" + questionSetId;
