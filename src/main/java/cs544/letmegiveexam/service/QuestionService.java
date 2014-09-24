@@ -61,12 +61,12 @@ public class QuestionService {
 
     @Transactional
     public List<Question> getQuestionsByQuestionId(long Id) {
-        System.out.println("**********1**********");
+        //System.out.println("**********1**********");
         try {
             Map<String, Long> paramaters = new HashMap<>(1);
             //paramaters.put("questionId", Id);
             int resultLimit = 10;
-            System.out.println("**********2**********");
+            //System.out.println("**********2**********");
             List<Question> qans = crudfasade.findWithNamedQuery("Question.findAll"); //, paramaters, resultLimit
             return qans; //return only 10 question
         } catch (Exception ex) {

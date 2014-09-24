@@ -75,7 +75,6 @@ public class AdminController {
             Subject subject = (Subject) subjectService.getSubjectById(question.getSubjectId());
             question.setSubject(subject);
             questionService.addQuestion(question);
-            System.out.println("Saved");
             return "redirect:/adminPanel";
         }
     }

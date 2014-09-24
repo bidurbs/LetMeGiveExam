@@ -35,7 +35,7 @@ public class UserServices implements IUserService{
     public void updateUser(User user) {
        
        boolean flg= crudfasade.update(user);
-        System.out.println("flag: " + flg);
+        //System.out.println("flag: " + flg);
     }
 
     public User getUserById(Long Id) {
@@ -58,7 +58,7 @@ public class UserServices implements IUserService{
     @Override
     public void createUser(User user) {
         User u = (User) crudfasade.create(user);
-        System.out.println("generated user Id " + u.getId());
+       // System.out.println("generated user Id " + u.getId());
         
            
         crudfasade.createAuthority(u);
@@ -68,6 +68,6 @@ public class UserServices implements IUserService{
 //        emailManager.sendEmail(mailSender, "Registered to LetMeGiveExam", subject, u.getEmail());
 //       
               
-         System.out.println(u.getUsername());
+       //  System.out.println(u.getUsername());
     }
 }

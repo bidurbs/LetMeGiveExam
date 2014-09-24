@@ -44,13 +44,13 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
             TransactionRequiredException {
         sessionFactory.getCurrentSession().save(entity);
         
-        System.out.println("Saved.. ");
+        //System.out.println("Saved.. ");
         return entity;
     }
     @Override
     public T createAuthority(T entity){
         User user=(User) entity;
-        System.out.println(user.getId());
+        //System.out.println(user.getId());
         String sql="insert into authority(user_id,username,authority) values(?,?,?)";
         SQLQuery createSQLQuery = sessionFactory.getCurrentSession().createSQLQuery(sql);
         createSQLQuery.setParameter(0, user.getId());
@@ -63,7 +63,7 @@ public class CRUDEntityFacade<T> implements EntityFacade<T> {
     }
     @Override
     public User findByUsername(String username){
-        System.out.println("In Find username facade... ");
+        //System.out.println("In Find username facade... ");
         String sql="FROM User u WHERE u.username= :username";
         Query query=sessionFactory.getCurrentSession().createQuery(sql);
         query.setParameter("username", username);

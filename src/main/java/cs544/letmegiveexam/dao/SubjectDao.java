@@ -34,7 +34,7 @@ public class SubjectDao {
     }
 
     public Subject findByName(String subjectName) {
-        System.out.println("calling dao");
+       // System.out.println("calling dao");
         Query q = sessionFactory.getCurrentSession().createQuery("from Subject s where s.name= :subjectName");
         q.setParameter("subjectName", subjectName);
         return (Subject) q.list();

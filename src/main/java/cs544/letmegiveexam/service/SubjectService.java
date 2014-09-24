@@ -54,15 +54,15 @@ public class SubjectService {
         //return crudfasade.getAll(Subject.class);
         //List<Subject> subjects = crudfasade.getAll(Subject.class);
         List<Subject> subjects = crudfasade.findWithNamedQuery("Subject.findAll");
-        System.out.println("Subject List:" + subjects.size());
-        for (Subject sub : subjects) {
-            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
-        }
+      //  System.out.println("Subject List:" + subjects.size());
+//        for (Subject sub : subjects) {
+//            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
+//        }
         return subjects;
     }
 
     public Subject getSubjectByName(String subjectName) {
-        System.out.println("calling service");
+       // System.out.println("calling service");
         Subject subject = subjectDao.findByName(subjectName);
         if (subject != null) {
             return subject;
