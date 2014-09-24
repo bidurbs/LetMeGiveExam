@@ -34,26 +34,26 @@ public class CustomSucessHandler implements AuthenticationSuccessHandler {
         //String username=userAuth.getUsername();
       String uname=((org.springframework.security.core.userdetails.User)obj).getUsername();
         
-        System.out.println("Authentication success username: " + uname);
+        //System.out.println("Authentication success username: " + uname);
 
         User user = facade.findByUsername(uname);
 
         if (user.getLockTime() != null) {
 
             if ((System.currentTimeMillis() - user.getLockTime().getTime()) >= 300000) {
-                System.out.println("Unlocking Userr");
+               // System.out.println("Unlocking Userr");
                 user.setLockCount(0);
                 user.setLockTime(null);
                 user.setEnabled(true);
                 userServices.updateUser(user);
                 response.sendRedirect("welcome");
             } else {
-                System.out.println("Success but lock time not exceed.. ");
+               // System.out.println("Success but lock time not exceed.. ");
                response.sendRedirect("login?error=AccountLock");
 
             }
         } else {
-            System.out.println("Lock time null.. ");
+         //   System.out.println("Lock time null.. ");
            response.sendRedirect("welcome");
         }
 

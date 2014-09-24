@@ -37,23 +37,21 @@ public class LoginController {
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
     public String welcome(Model model, HttpSession session) {
-        System.out.println("Subject List");
+       
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        System.out.println(name);
-
-//            HttpSession session=(HttpSession) sessionFactory.getCurrentSession();
+    
         if (session.getAttribute("user") == null) {
             User user = userServices.getUserByUsername(name);
             session.setAttribute("user", user);
         }
         //ModelAndView model = new ModelAndView();
         List<Subject> subjects = subjectService.getAllSubjects();
-        System.out.println("Subject List:" + subjects.size());
-        for (Subject sub : subjects) {
-            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
-
-        }
+        
+//        for (Subject sub : subjects) {
+//            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
+//
+//        }
         model.addAttribute("subjects", subjects);
         return "welcome";
     }
@@ -91,10 +89,10 @@ public class LoginController {
         //return "subjects";
         ModelAndView model = new ModelAndView();
         List<Subject> subjects = subjectService.getAllSubjects();
-        System.out.println("Subject List:" + subjects.size());
-        for (Subject sub : subjects) {
-            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
-        }
+//        System.out.println("Subject List:" + subjects.size());
+//        for (Subject sub : subjects) {
+//            System.out.println("Subject:" + sub.getName() + "  Description:" + sub.getDescription());
+//        }
         model.addObject(subjects);
         return model;
     }

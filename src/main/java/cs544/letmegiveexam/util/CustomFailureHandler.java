@@ -39,14 +39,14 @@ public class CustomFailureHandler implements AuthenticationFailureHandler {
         
        String username = (String)ae.getAuthentication().getPrincipal();    
 
-        System.out.println("Authentication username: " +username);
+       // System.out.println("Authentication username: " +username);
         
         
         User user = facade.findByUsername(username);
         HttpSession httpSession = req.getSession();
         System.out.println("");
         if (null != user) {
-            System.out.println("User not null : " + user.getFirstName());
+           // System.out.println("User not null : " + user.getFirstName());
             attempts = user.getLockCount()+1;
             
             if (attempts >= 3) {

@@ -51,7 +51,7 @@ public class UserExamController {
             }
 
             int score = calcualteResult(questionList);
-            System.out.println("Score:" + score);
+            //System.out.println("Score:" + score);
             userExam.setScore(score);
             
             //calculate the duration of exam
@@ -68,7 +68,7 @@ public class UserExamController {
     private int calcualteResult(List<Question> questionLIst) {
         int result = 0;
         for (Question question : questionLIst) {
-            System.out.println("QuesId:+" + question.getId() + " ,UserAnswer:" + question.getUserAnswer() + " Correct Answer:" + question.getCorrectAnswer());
+           // System.out.println("QuesId:+" + question.getId() + " ,UserAnswer:" + question.getUserAnswer() + " Correct Answer:" + question.getCorrectAnswer());
             if (question.getUserAnswer().equalsIgnoreCase(question.getCorrectAnswer())) {
                 result++;
             }

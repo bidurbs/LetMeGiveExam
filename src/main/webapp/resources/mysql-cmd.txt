@@ -7,12 +7,8 @@ create table authority(
 insert into Role(id, role) values(1, 'ROLE_USER');
 insert into Role(id, role) values(2, 'ROLE_ADMIN');
 
-INSERT INTO cs544db.authority (user_id, username, authority) 
-	VALUES (1, 'test', 'ROLE_USER')
-INSERT INTO cs544db.authority (user_id, username, authority) 
-	VALUES (2, 'ninu', 'ROLE_ADMIN')
 
 
-INSERT INTO cs544db.`User` (Email, FirstName, LastName, role_id, userRole_id, enabled, lockCount, lockTime, password, username) 
-	VALUES ('nirali@gmail.com', 'nirali', 'bheda', 1, NULL, true, 0, CURRENT_TIMESTAMP, 'test', 'test')
+
+
 

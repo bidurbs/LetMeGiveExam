@@ -27,7 +27,7 @@
             
         <c:if test="${not empty param.error}">
 		<c:if test="${'AccountLock' eq param.error}">
-                <p style="color: red">Your Account is Locked</p>
+                <p style="color: red">Your Account is Locked. Try Again in 5 mins. </p>
 		</c:if>
 		<c:if test="${'InvalidCredentials' eq param.error}">
                     <p style="color: red"> Invalid Username or Password. </p>
