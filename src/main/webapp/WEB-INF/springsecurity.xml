@@ -23,6 +23,7 @@
         <intercept-url pattern="/register*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/addUser" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         <intercept-url pattern="/loginfailed" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+        <intercept-url pattern="/rest/*" access="IS_AUTHENTICATED_ANONYMOUSLY"/>
         
         <intercept-url pattern="/**" method="POST" access="ROLE_ADMIN, ROLE_USER" />
         <intercept-url pattern="/**" method="GET" access="ROLE_ADMIN, ROLE_USER" />

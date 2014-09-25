@@ -68,5 +68,11 @@ public class QuestionDAO {
         q.setMaxResults(questionLimit);
         return (List<Question>) q.list();//.subList(0, 4);
     }
+    
+    public List<Question> getQuestionsBySubjectId(long Id) {
+        Query q = sessionFactory.getCurrentSession().createQuery("from Question q where q.subject.id= :subjectId order by rand()");
+        q.setParameter("subjectId", Id);
+        return (List<Question>) q.list();
+    }
 
 }
