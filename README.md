@@ -22,7 +22,7 @@ Technologies:
 - Transaction
 - DAO
 - JavaMailSender
-- Singleton , Proxy, crud fasade pattern, MVC Pattern, FrontController
+- Singleton , Proxy, crud fasade pattern, MVC Pattern, FrontController (Design pattern)
 - Gitgub
 - Agile/ SCRUM Methodologies
 - DB: MySQL (hosted on amazon server - free)
