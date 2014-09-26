@@ -22,11 +22,12 @@ Technologies:
 - Transaction
 - DAO
 - JavaMailSender
-- Singleton and crud fasade pattern
+- Singleton , Proxy, crud fasade pattern, MVC Pattern, FrontController
 - Gitgub
 - Agile/ SCRUM Methodologies
 - DB: MySQL (hosted on amazon server - free)
 - Localization (Multi linguale website)
+- Spring RESTFul Web Services
 
 Members:
 - Bidur BK
