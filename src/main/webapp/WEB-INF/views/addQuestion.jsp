@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>  
-        <%@include file="../template/sideBar.jsp"%>
+        <%@include file="sideBar.jsp"%>
         <form:form commandName="question" action="addQuestion" method="post">
             <form:errors path="*" cssClass="errorblock" element="div" />      
 

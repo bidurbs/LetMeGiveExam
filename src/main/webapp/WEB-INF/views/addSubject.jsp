@@ -7,7 +7,7 @@
         <title>Add Subject</title>
     </head>
     <body>
-        <%@include file="../template/sideBar.jsp"%>
+        <%@include file="sideBar.jsp"%>
         <form:form commandName="subject" action="addSubject" method="post">
             <form:errors path="*" cssClass="errorblock" element="div" />              
                 <table>

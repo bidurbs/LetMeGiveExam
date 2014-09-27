@@ -12,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-           <%@include file="../template/sideBar.jsp"%>
+           <%@include file="sideBar.jsp"%>
         <h2 style="background-color: blueviolet">Welcome to Admin Page!</h2>        
 <!--        <table>            
             <tr><td> <a href="adminSubjects"> Subject Setting</a>    </td></tr>

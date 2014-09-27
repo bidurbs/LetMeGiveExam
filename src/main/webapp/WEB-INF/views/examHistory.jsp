@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>       
-        <%@include file="../template/sideBar.jsp"%>
+        <%@include file="sideBar.jsp"%>
         <h3>Exam history :</h3>
         <table border="1" cellpadding="10">
             <tr>

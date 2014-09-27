@@ -9,7 +9,7 @@
         <title>Subjects</title>
     </head>
     <body>  
-        <%@include file="../template/sideBar.jsp"%>
+        <%@include file="sideBar.jsp"%>
         <table>
             <thead>
             <th>No.</th>
