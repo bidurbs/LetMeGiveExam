@@ -4,7 +4,7 @@ Description: Role Based Online portal to give multiple choice questions type exa
 
 Key Features: 
 - admin can create subjects and create questions for specific subject.
-- admin can uplaod questions from Excel file.
+- admin can upload questions from Excel file.
 - Can define global settings for exam.
 
 - user can register and login to system
