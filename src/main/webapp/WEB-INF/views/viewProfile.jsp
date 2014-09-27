@@ -12,7 +12,7 @@
         <title>View Profile</title>
     </head>
     <body>
-         <%@include file="../template/sideBar.jsp"%>
+         <%@include file="sideBar.jsp"%>
         <h1>View profile</h1>
         <table>
             <tr>

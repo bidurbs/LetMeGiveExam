@@ -85,7 +85,6 @@
         </h3>
       
     </table>
-    <!--</fieldset>-->
-      <%@include file="../template/footer.jsp"%>
+    
 </body>
 </html>

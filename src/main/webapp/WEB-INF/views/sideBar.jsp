@@ -23,7 +23,7 @@
         <div id='cssmenu'>
             <ul> 
                 <sec:authorize access="hasRole('ROLE_USER')" >
-                        <li><a href="generateQuestionSet/1" >Start Exam</a></li>
+                        <!--<li><a href="generateQuestionSet/1" >Start Exam</a></li>-->
                         <li><a href="examHistory" >View History</a></li>
                         <li><a href="viewProfile" >View Profile</a></li>
                 </sec:authorize>
@@ -37,7 +37,7 @@
                           
                 </sec:authorize>
                
-                <li><a href="logout" >Logout</a></li>
+                <li><a href="j_spring_security_logout" >Logout</a></li>
             </ul>
         </div>
     </div>
