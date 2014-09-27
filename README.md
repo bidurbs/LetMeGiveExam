@@ -4,7 +4,7 @@ Description: Role Based Online portal to give multiple choice questions type exa
 
 Key Features: 
 - admin can create subjects and create questions for specific subject.
-- admin can uplaod questions from Excel file.
+- admin can upload questions from Excel file.
 - Can define global settings for exam.
 
 - user can register and login to system
@@ -22,11 +22,12 @@ Technologies:
 - Transaction
 - DAO
 - JavaMailSender
-- Singleton and crud fasade pattern
+- Singleton , Proxy, crud fasade pattern, MVC Pattern, FrontController (Design pattern)
 - Gitgub
 - Agile/ SCRUM Methodologies
 - DB: MySQL (hosted on amazon server - free)
 - Localization (Multi linguale website)
+- Spring RESTFul Web Services
 
 Members:
 - Bidur BK
